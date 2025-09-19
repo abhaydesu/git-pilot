@@ -2,7 +2,7 @@ import React from 'react'
 
 export const Footer = () => {
   return (
-    <div className='px-6 md:px-120 mt-40 flex text-neutral-300 items-center justify-between gap-5 bg-neutral-950/80 backdrop-blur-sm h-30'>
+    <div className='px-6 xl:px-120 mt-40 flex text-neutral-300 items-center justify-between gap-5 bg-neutral-950/80 backdrop-blur-sm h-30'>
         <div>made with <span className='text-lime-200'> love</span> by Abhay</div>
         <div className='flex gap-6 lg:gap-10'>
             <a className='hover:text-lime-200' target='_blank' href="https://www.linkedin.com/in/abhaydesu/">linkedin</a>
