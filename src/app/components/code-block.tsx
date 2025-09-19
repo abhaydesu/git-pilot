@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 type CodeBlockProps = {
   children: React.ReactNode;
@@ -18,21 +18,34 @@ export default function CodeBlock({
   copyLabel = 'Copy code',
 }: CodeBlockProps) {
   const [copied, setCopied] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   const handleCopy = async () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    
     try {
       let text = '';
       if (typeof children === 'string') text = children;
       else {
-        const container = document.createElement('div');
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        container.appendChild((children as any) as Node);
-        text = container.textContent ?? '';
+        text = React.Children.toArray(children).join('');
       }
 
       await navigator.clipboard.writeText(text);
       setCopied(true);
-      setTimeout(() => setCopied(false), 1800);
+
+      timeoutRef.current = setTimeout(() => {
+        setCopied(false);
+      }, 2500); 
     } catch (err) {
       console.error('copy failed', err);
     }
@@ -67,23 +80,28 @@ export default function CodeBlock({
           type="button"
           aria-label={copyLabel}
           onClick={handleCopy}
-          className="inline-flex items-center justify-center text-lime-200 rounded-md px-1 py-1 text-sm transition-opacity duration-150 hover:opacity-90"
+          className="inline-flex items-center justify-center text-lime-200 rounded-md p-2 transition-colors duration-150 hover:bg-white/10"
         >
-          {copied ? (
-            <span className="select-none">
-                <svg  xmlns="http://www.w3.org/2000/svg"  width="16"  height="16"  viewBox="0 0 24 24"  fill="currentColor"  className="icon icon-tabler icons-tabler-filled icon-tabler-circle-check"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z" /></svg>
-            </span>
-          ) : (
+          <span className="grid">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4"
-              viewBox="0 0 20 20"
+              fill="currentColor"
+              className={`icon icon-tabler icon-tabler-filled icon-tabler-circle-check transition-opacity duration-300 [grid-area:1/1] h-5 w-5 ${copied ? 'opacity-100' : 'opacity-0'}`}
+              viewBox="0 0 24 24"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z" />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
               fill="currentColor"
               aria-hidden
+              className={`transition-opacity duration-300 [grid-area:1/1] h-5 w-5 ${copied ? 'opacity-0' : 'opacity-100'}`}
+              viewBox="0 0 20 20"
             >
               <path d="M8 2a2 2 0 00-2 2v1H5a2 2 0 00-2 2v7a2 2 0 002 2h7a2 2 0 002-2v-1h1a2 2 0 002-2V6a2 2 0 00-2-2H8zM7 4a1 1 0 011-1h7a1 1 0 011 1v7a1 1 0 01-1 1h-1V7a2 2 0 00-2-2H7V4z" />
             </svg>
-          )}
+          </span>
         </button>
       )}
     </div>
