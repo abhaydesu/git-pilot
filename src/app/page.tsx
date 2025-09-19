@@ -4,12 +4,14 @@ import { GlowingEffectDemoSecond } from "./components/DemoSection";
 import Heading from "./components/Heading";
 import { Navbar } from "./components/navbar";
 import { Subheading } from "./components/subheading";
+
 export default function Home() {
   return (
     <>
       <Navbar />
-      <Heading >
-        <h1 className="mx-auto w-2xl mt-70 text-center">
+      <Heading>
+        {/* Updated classes below for responsiveness */}
+        <h1 className="mx-auto max-w-2xl mt-28 md:mt-40 text-center">
           Your AI git co-pilot for the command line.
         </h1>
       </Heading>

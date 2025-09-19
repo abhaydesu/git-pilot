@@ -1,5 +1,5 @@
 // app/layout.tsx
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import InteractiveBackground from "./components/Background";
@@ -14,6 +14,13 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Git-Pilot",
   description: "An AI git assistant, right in your CLI.",
+};
+
+// Add this viewport export
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1, // Optional: prevents users from zooming in
 };
 
 export default function RootLayout({
