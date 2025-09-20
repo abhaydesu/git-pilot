@@ -31,8 +31,8 @@ Make sure you have Node.js (version 18.x or later) and a package manager (npm, y
 Clone the repository:
 
 ```bash
-git clone https://github.com/abhaydesu/git-pilot-website.git
-cd git-pilot-website
+git clone https://github.com/abhaydesu/git-pilot.git
+cd git-pilot
 ```
 
 Install dependencies:
