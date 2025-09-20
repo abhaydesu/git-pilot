@@ -1,43 +1,43 @@
 "use client";
 
 import { GlowingEffect } from "./ui/glowing-effect";
-import { Box, Lock, Search, Settings, Sparkles } from "lucide-react";
+import { Box, File, GitBranch, Settings, Sparkles } from "lucide-react";
 
 
 export function GlowingEffectDemoSecond() {
   return (
-    <ul className="grid grid-cols-1 mt-80 grid-rows-none gap-4 md:grid-cols-12 md:grid-rows-3 lg:gap-4 xl:max-h-[34rem] xl:grid-rows-2">
+    <ul className="grid grid-cols-1 mt-90 grid-rows-none gap-4 md:grid-cols-12 md:grid-rows-3 lg:gap-4 xl:max-h-[34rem] xl:grid-rows-2">
       <GridItem
         area="md:[grid-area:1/1/2/7] xl:[grid-area:1/1/2/5]"
-        icon={<Box className="h-4 w-4 text-black dark:text-neutral-400" />}
+        icon={<GitBranch className="h-4 w-4 text-black dark:text-lime-200" />}
         title=" Commit Like a Pro"
         description="We analyze your code and write perfect commit messages."
       />
 
       <GridItem
         area="md:[grid-area:1/7/2/13] xl:[grid-area:2/1/3/5]"
-        icon={<Settings className="h-4 w-4 text-black dark:text-neutral-400" />}
+        icon={<Settings className="h-4 w-4 text-black dark:text-lime-200" />}
         title="Personal Git Expert"
         description=" Translate plain English into the Git command you need."
       />
 
       <GridItem
         area="md:[grid-area:2/1/3/7] xl:[grid-area:1/5/3/9]"
-        icon={<Lock className="h-4 w-4 text-black dark:text-neutral-400" />}
+        icon={<Sparkles className="h-4 w-4 text-black dark:text-lime-200" />}
         title="Powered by Gemini"
         description="Git Pilot's intelligence is driven by Google's Gemini. The API understands the nuances of your code changes which allows it to provide suggestions that are remarkably accurate and feel like they were written by a human expert."
       />
 
       <GridItem
         area="md:[grid-area:2/7/3/13] xl:[grid-area:1/9/2/13]"
-        icon={<Sparkles className="h-4 w-4 text-black dark:text-neutral-400" />}
+        icon={<Box className="h-4 w-4 text-black dark:text-lime-200" />}
         title="Install Git Pilot Now"
         description="It’s free, open-source, and ready to upgrade your workflow."
       />
 
       <GridItem
         area="md:[grid-area:3/1/4/13] xl:[grid-area:2/9/3/13]"
-        icon={<Search className="h-4 w-4 text-black dark:text-neutral-400" />}
+        icon={<File className="h-4 w-4 text-black dark:text-lime-200" />}
         title=" Git, in Plain English"
         description=" Natural language to git commands, instantly."
       />

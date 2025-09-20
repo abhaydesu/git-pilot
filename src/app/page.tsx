@@ -10,8 +10,7 @@ export default function Home() {
     <>
       <Navbar />
       <Heading>
-        {/* Updated classes below for responsiveness */}
-        <h1 className="mx-auto max-w-2xl mt-28 md:mt-40 text-center">
+        <h1 className="mx-auto max-w-2xl mt-28 md:mt-70 text-center">
           Your AI git co-pilot for the command line.
         </h1>
       </Heading>
