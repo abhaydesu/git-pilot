@@ -34,7 +34,7 @@ export default function RootLayout({
         className={`${poppins.className} relative min-h-screen w-screen overflow-x-hidden bg-black text-white select-none`}
       >
         <InteractiveBackground
-          shape="triangle"
+          shape="square"
           pixelSize={3}
           inkColor="#737373"
         />
