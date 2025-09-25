@@ -63,11 +63,12 @@ export default function CodeBlock({
     'px-5',
     'font-mono',
     'text-base',
+    ' backdrop-blur-sm'
   ].join(' ');
 
   return (
     <div className={`${base} ${className}`.trim()}>
-      <div className="flex-1 break-words">
+      <div className="flex-1 break-words ">
         {typeof children === 'string' ? (
           <code className="whitespace-pre-wrap">{children}</code>
         ) : (
@@ -86,7 +87,7 @@ export default function CodeBlock({
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="currentColor"
-              className={`icon icon-tabler icon-tabler-filled icon-tabler-circle-check transition-opacity duration-300 [grid-area:1/1] h-5 w-5 ${copied ? 'opacity-100' : 'opacity-0'}`}
+              className={`icon cursor-pointer icon-tabler icon-tabler-filled icon-tabler-circle-check transition-opacity duration-300 [grid-area:1/1] h-5 w-5 ${copied ? 'opacity-100' : 'opacity-0'}`}
               viewBox="0 0 24 24"
             >
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />

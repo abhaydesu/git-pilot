@@ -4,6 +4,7 @@ import { GlowingEffectDemoSecond } from "./components/DemoSection";
 import Heading from "./components/Heading";
 import { Navbar } from "./components/navbar";
 import { Subheading } from "./components/subheading";
+import { Footer } from "./components/footer";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
         </CodeBlock>
       </div>
       <GlowingEffectDemoSecond />
+      <Footer />
     </>
   );
 }

@@ -1,10 +1,8 @@
-// app/layout.tsx
 import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import InteractiveBackground from "./components/Background";
 import Container from "./components/container";
-import { Footer } from "./components/footer";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -29,19 +27,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${poppins.className} relative min-h-screen w-screen overflow-x-hidden bg-black text-white select-none`}
+        className={`${poppins.className} relative min-h-screen w-screen overflow-x-hidden text-white `}
       >
         <InteractiveBackground
           shape="square"
           pixelSize={3}
-          inkColor="#737373"
+          inkColor="#a3a3a3"
         />
-        <main>
-          <Container className="pt-20 pb-12 max-w-3xl">{children}</Container>
+        <main >
+          <Container className="pt-20 max-w-5xl bg-neutral-950/95 border border-neutral-700">{children}</Container>
         </main>
-        <Footer />
+        
       </body>
     </html>
   );
