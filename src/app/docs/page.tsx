@@ -81,7 +81,18 @@ export default function DocsPage() {
             <DocsCodeBlock>
               git pilot branch &quot;add oauth login&quot;
               {'\n'}
-              git pilot branch &quot;user logout bug&quot;
+              {'\n'}
+             ✔ Generating a conventional branch name...
+                {'\n'}
+                --- Suggested Branch Name ---
+                {'\n'}
+                feature/add-oauth-login
+                {'\n'}
+                -----------------------------
+                {'\n'}
+                ✔ What would you like to do? Accept
+                {'\n'}
+                ✔ Switched to new branch &quot;feature/add-oauth-login&quot;
             </DocsCodeBlock>
           </div>
 
