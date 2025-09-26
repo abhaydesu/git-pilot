@@ -81,7 +81,7 @@ export default function CodeBlock({
           type="button"
           aria-label={copyLabel}
           onClick={handleCopy}
-          className="inline-flex items-center justify-center text-lime-200 rounded-md p-2 transition-colors duration-150 hover:bg-white/10"
+          className="inline-flex items-center justify-center text-lime-200 hover:text-lime-300 rounded-md p-2 transition-colors duration-150 hover:bg-white/10"
         >
           <span className="grid">
             <svg

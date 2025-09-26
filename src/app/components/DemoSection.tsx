@@ -6,7 +6,7 @@ import { Box, CheckCircle, GitBranch, KeyIcon, Sparkles } from "lucide-react";
 
 export function GlowingEffectDemoSecond() {
   return (
-    <ul className="grid grid-cols-1 mt-90 grid-rows-none gap-4 md:grid-cols-12 md:grid-rows-3 lg:gap-4 xl:max-h-[34rem] xl:grid-rows-2 max-w-4xl mx-auto">
+    <ul className="grid grid-cols-1 mt-60 grid-rows-none gap-4 md:grid-cols-12 md:grid-rows-3 lg:gap-4 xl:max-h-[34rem] xl:grid-rows-2 max-w-4xl mx-auto">
       <GridItem
         area="md:[grid-area:1/1/2/7] xl:[grid-area:1/1/2/5]"
         icon={<GitBranch className="h-4 w-4 text-black dark:text-lime-200" />}
