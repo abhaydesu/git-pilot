@@ -6,7 +6,6 @@ import { Navbar } from "./components/navbar";
 import { Subheading } from "./components/subheading";
 import { Footer } from "./components/footer";
 import Link from "next/link";
-import { Link2 } from "lucide-react";
 
 export default function Home() {
   return (

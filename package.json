@@ -12,6 +12,7 @@
     "@tabler/icons-react": "^3.35.0",
     "@types/react-syntax-highlighter": "^15.5.13",
     "clsx": "^2.1.1",
+    "framer-motion": "^12.23.22",
     "lucide-react": "^0.544.0",
     "motion": "^12.23.16",
     "next": "15.5.3",

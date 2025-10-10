@@ -18,6 +18,15 @@ export default function DocsPage() {
         </p>
       </header>
 
+      <section id="how-it-works" className="mt-20 scroll-mt-50">
+        <h2 className="text-3xl font-semibold text-neutral-100 border-b border-neutral-800 pb-3">
+          How It Works
+        </h2>
+        <p className="mt-6 text-base leading-7">
+          Git-Pilot is a CLI tool that communicates with a secure backend API powered by Google&apos;s Gemini models. This architecture keeps your AI API keys safe and off your local machine. You always have the final say, with the ability to review, edit, or cancel any AI suggestion before it runs.
+        </p>
+      </section>
+
       <section id="installation" className="mt-20 scroll-mt-50">
         <h2 className="text-3xl font-semibold text-neutral-100 border-b border-neutral-800 pb-3">
           Installation
@@ -26,15 +35,6 @@ export default function DocsPage() {
           Make sure you have Node.js (v18+) and Git installed. Then, run the following command to install Git-Pilot globally from npm:
         </p>
         <DocsCodeBlock copyable>npm install -g @abhaydesu/git-pilot</DocsCodeBlock>
-      </section>
-
-      <section id="how-it-works" className="mt-20 scroll-mt-50">
-        <h2 className="text-3xl font-semibold text-neutral-100 border-b border-neutral-800 pb-3">
-          How It Works
-        </h2>
-        <p className="mt-6 text-base leading-7">
-          Git-Pilot is a CLI tool that communicates with a secure backend API powered by Google&apos;s Gemini models. This architecture keeps your AI API keys safe and off your local machine. You always have the final say, with the ability to review, edit, or cancel any AI suggestion before it runs.
-        </p>
       </section>
 
       <section id="commands" className="mt-20">

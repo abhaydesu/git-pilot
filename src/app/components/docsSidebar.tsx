@@ -9,8 +9,8 @@ export const DocsSidebar = () => {
         <div>
           <h3 className="mb-2 font-semibold text-xl text-neutral-100">guide</h3>
           <ul className="space-y-2">
-            <li><Link href="#installation" className="text-xs text-neutral-300 hover:text-lime-200">Installation</Link></li>
             <li><Link href="#how-it-works" className="text-xs text-neutral-300 hover:text-lime-200">How It Works</Link></li>
+            <li><Link href="#installation" className="text-xs text-neutral-300 hover:text-lime-200">Installation</Link></li>
           </ul>
         </div>
         <div>
