@@ -43,14 +43,28 @@ export default function DocsPage() {
         </h2>
         <div className="mt-12 space-y-16">
           <div id="usage-commit" className="scroll-mt-48">
-            <h3 className="text-2xl font-semibold text-lime-200">git pilot commit</h3>
-            <p className="mt-4 text-base leading-7">
-              Analyzes your staged changes (<Code>git diff</Code>) to generate a clear and descriptive commit message that follows the Conventional Commits specification. This is perfect for maintaining a clean history and auto-generating changelogs.
-            </p>
-            <DocsCodeBlock copyable>git pilot commit &quot;your intent here&quot;</DocsCodeBlock>
-            <p className="mt-4 text-neutral-400">Example:</p>
-            <DocsCodeBlock>git pilot commit &quot;add user authentication&quot;</DocsCodeBlock>
-          </div>
+  <h3 className="text-2xl font-semibold text-lime-200">git pilot commit</h3>
+  <p className="mt-4 text-base leading-7">
+    Analyzes your staged changes (<Code>git diff</Code>) to generate a clear and descriptive commit message that follows the Conventional Commits specification. This is perfect for maintaining a clean history and auto-generating changelogs.
+  </p>
+  
+  <p className="mt-6 text-base leading-7">
+    You can either provide your intent directly or let the AI figure it out by analyzing your diff.
+  </p>
+
+    <p className="mt-6 font-semibold">Without an Intent:</p>
+  <p className="mt-2 text-base leading-7">
+    If you omit the intent, the AI will analyze your staged changes on its own to generate the most appropriate message.
+  </p>
+  <DocsCodeBlock copyable>git pilot commit</DocsCodeBlock>
+  
+  <p className="mt-4 font-semibold">With an Intent:</p>
+  <DocsCodeBlock copyable>git pilot commit &quot;your intent here&quot;</DocsCodeBlock>
+  <p className="mt-2 text-neutral-400">Example:</p>
+  <DocsCodeBlock>git pilot commit &quot;add user authentication&quot;</DocsCodeBlock>
+
+
+</div>
 
           <div id="usage-run" className="scroll-mt-48">
             <h3 className="text-2xl font-semibold text-lime-200">git pilot run</h3>
