@@ -57,7 +57,7 @@ export default function CodeBlock({
     'gap-3',
     'bg-[var(--color-surface)]',
     'border',
-    'border-[var(--color-border)]',
+    'border-neutral-700',
     'rounded-md',
     'py-3',
     'px-5',
@@ -81,7 +81,7 @@ export default function CodeBlock({
           type="button"
           aria-label={copyLabel}
           onClick={handleCopy}
-          className="inline-flex items-center justify-center text-lime-200 hover:text-lime-300 rounded-md p-2 transition-colors duration-150 hover:bg-white/10"
+          className="inline-flex items-center justify-center text-neutral-500 hover:text-neutral-300 active:scale-85 rounded-md transition-colors duration-350 hover:bg-white/10"
         >
           <span className="grid">
             <svg

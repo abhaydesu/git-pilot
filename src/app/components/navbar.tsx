@@ -1,40 +1,172 @@
-import React from 'react'
-import Link from 'next/link'
+// app/components/Navbar.tsx
+"use client"; // Required for useState and useEffect
+
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
 
 export const Navbar = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Check if user has scrolled more than 50% of the viewport height
+      const shouldBeVisible = window.scrollY > window.innerHeight * 0.5;
+      if (shouldBeVisible !== isVisible) {
+        setIsVisible(shouldBeVisible);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup function to remove the event listener
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isVisible]); // Re-run effect only if isVisible changes
+
+  // Close mobile menu if window is resized to desktop width
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <div className='
-      fixed 
-      w-[90%] md:w-4xl 
-      flex items-center 
-      rounded-xl 
-      justify-between 
-      bg-neutral-950/90 
-      border border-neutral-600 
-      top-4 md:top-10 
-      p-4 md:py-5 md:px-7
-      left-1/2 -translate-x-1/2 
-      z-10 
-      backdrop-blur-sm'
-    >
-      <div className='flex items-center gap-6 md:gap-8 cursor-pointer'>
-        <a target='_blank' className='hover:text-lime-200' href="https://www.npmjs.com/package/@abhaydesu/git-pilot">
-        <svg viewBox="268.5 268.5 1962.9 1962.9" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill='currentColor'><path d="M1241.5 268.5h-973v1962.9h972.9V763.5h495v1467.9h495V268.5z"/></svg>  
-        </a>
-        <a target='_blank' className='hover:text-lime-200' href="https://github.com/abhaydesu/git-pilot-cli">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="icon icon-tabler icons-tabler-filled icon-tabler-brand-github"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5.315 2.1c.791 -.113 1.9 .145 3.333 .966l.272 .161l.16 .1l.397 -.083a13.3 13.3 0 0 1 4.59 -.08l.456 .08l.396 .083l.161 -.1c1.385 -.84 2.487 -1.17 3.322 -1.148l.164 .008l.147 .017l.076 .014l.05 .011l.144 .047a1 1 0 0 1 .53 .514a5.2 5.2 0 0 1 .397 2.91l-.047 .267l-.046 .196l.123 .163c.574 .795 .93 1.728 1.03 2.707l.023 .295l.007 .272c0 3.855 -1.659 5.883 -4.644 6.68l-.245 .061l-.132 .029l.014 .161l.008 .157l.004 .365l-.002 .213l-.003 3.834a1 1 0 0 1 -.883 .993l-.117 .007h-6a1 1 0 0 1 -.993 -.883l-.007 -.117v-.734c-1.818 .26 -3.03 -.424 -4.11 -1.878l-.535 -.766c-.28 -.396 -.455 -.579 -.589 -.644l-.048 -.019a1 1 0 0 1 .564 -1.918c.642 .188 1.074 .568 1.57 1.239l.538 .769c.76 1.079 1.36 1.459 2.609 1.191l.001 -.678l-.018 -.168a5.03 5.03 0 0 1 -.021 -.824l.017 -.185l.019 -.12l-.108 -.024c-2.976 -.71 -4.703 -2.573 -4.875 -6.139l-.01 -.31l-.004 -.292a5.6 5.6 0 0 1 .908 -3.051l.152 -.222l.122 -.163l-.045 -.196a5.2 5.2 0 0 1 .145 -2.642l.1 -.282l.106 -.253a1 1 0 0 1 .529 -.514l.144 -.047l.154 -.03z" /></svg>
-        </a>
-      </div>
-      <div className='hover:scale-110 absolute left-1/2 -translate-x-1/2 transition text-lime-200 '>
-        <Link href="/">
-        <img src="/logo-dark-new.png" alt="logo" className='h-9 w-8' />
-        </Link>
-      </div>
-            <div>
-        <Link href="/docs" className="hover:text-lime-200 transition-colors text-sm">
-            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  className="icon icon-tabler icons-tabler-filled icon-tabler-file-dots"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 2l.117 .007a1 1 0 0 1 .876 .876l.007 .117v4l.005 .15a2 2 0 0 0 1.838 1.844l.157 .006h4l.117 .007a1 1 0 0 1 .876 .876l.007 .117v9a3 3 0 0 1 -2.824 2.995l-.176 .005h-10a3 3 0 0 1 -2.995 -2.824l-.005 -.176v-14a3 3 0 0 1 2.824 -2.995l.176 -.005zm-3 12a1 1 0 0 0 -.993 .883l-.007 .127a1 1 0 0 0 1.993 .117l.007 -.127a1 1 0 0 0 -1 -1m3 0a1 1 0 0 0 -.993 .883l-.007 .127a1 1 0 0 0 1.993 .117l.007 -.127a1 1 0 0 0 -1 -1m3 0a1 1 0 0 0 -.993 .883l-.007 .127a1 1 0 0 0 1.993 .117l.007 -.127a1 1 0 0 0 -1 -1" /><path d="M19 7h-4l-.001 -4.001z" /></svg>
-        </Link>
+    <>
+      {/* Top Gradient Fade */}
+      <div
+        className={`fixed top-0 bg-gradient-to-b from-neutral-900 via-neutral-950 to-transparent h-28 w-full ${
+          isVisible
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        } z-40 
+        transition-all duration-300 ease-out`}
+      />
+
+      <div
+        className={`
+          fixed 
+          w-[90%] md:w-8xl 
+          flex items-center 
+          rounded-xl 
+          justify-between 
+          bg-neutral-950/90 
+          border border-neutral-800 
+          top-4 md:top-10 
+          p-4 md:py-5 md:px-7
+          left-1/2 -translate-x-1/2 
+          z-50 
+          backdrop-blur-sm
+          transition-all duration-300 ease-out
+          ${
+            isVisible
+              ? "opacity-100 translate-y-0 pointer-events-auto"
+              : "opacity-0 -translate-y-16 pointer-events-none"
+          }
+        `}
+      >
+        <div className="font-array text-3xl hover:scale-105 transition-all duration-300">
+          <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
+            Git Pilot
+          </Link>
         </div>
-    </div>
-  )
-}
+
+        <div className="hidden md:flex gap-8 text-lg font-mono">
+          <Link
+            href="/docs"
+            className="text-neutral-300 hover:text-white transition-all duration-300"
+          >
+            Docs
+          </Link>
+          <a
+            target="_blank"
+            href="https://www.npmjs.com/package/@abhaydesu/git-pilot"
+            className="text-neutral-300 hover:text-white transition-all duration-300"
+          >
+            Npm
+          </a>
+          <a
+            target="_blank"
+            href="https://github.com/abhaydesu/git-pilot-cli"
+            className="text-neutral-300 hover:text-white transition-all duration-300"
+          >
+            Github
+          </a>
+        </div>
+
+        <button
+          className="md:hidden z-50 p-2 -mr-2" // Added padding for easier tapping
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          <div className="space-y-1.5">
+            <span
+              className={`block w-6 h-0.5 bg-neutral-300 transition-all duration-300 ease-out ${
+                isMobileMenuOpen ? "rotate-45 translate-y-[8px]" : ""
+              }`}
+            ></span>
+            <span
+              className={`block w-6 h-0.5 bg-neutral-300 transition-all duration-300 ease-out ${
+                isMobileMenuOpen ? "opacity-0" : ""
+              }`}
+            ></span>
+            <span
+              className={`block w-6 h-0.5 bg-neutral-300 transition-all duration-300 ease-out ${
+                isMobileMenuOpen ? "-rotate-45 -translate-y-[8px]" : ""
+              }`}
+            ></span>
+          </div>
+        </button>
+      </div>
+
+      {/* Mobile Menu Dropdown */}
+      <div
+        className={`
+          fixed w-[90%] left-1/2 -translate-x-1/2
+          top-[5.75rem] // Positioned below the navbar (1rem top + 4.25rem height + 0.5rem gap)
+          md:hidden // Critical: only show on mobile
+          bg-neutral-950/90 border border-neutral-800 rounded-xl
+          backdrop-blur-sm
+          transition-all duration-300 ease-out
+          overflow-hidden z-50
+          ${
+            isVisible && isMobileMenuOpen
+              ? "opacity-100 translate-y-0 pointer-events-auto"
+              : "opacity-0 -translate-y-16 pointer-events-none"
+          }
+        `}
+      >
+        <div className="flex flex-col items-center gap-6 p-6 font-mono text-lg">
+          <Link
+            href="/docs"
+            className="text-neutral-300 hover:text-white transition-all duration-300"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Docs
+          </Link>
+          <a
+            target="_blank"
+            href="https://www.npmjs.com/package/@abhaydesu/git-pilot"
+            className="text-neutral-300 hover:text-white transition-all duration-300"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Npm
+          </a>
+          <a
+            target="_blank"
+            href="https://github.com/abhaydesu/git-pilot-cli"
+            className="text-neutral-300 hover:text-white transition-all duration-300"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Github
+          </a>
+        </div>
+      </div>
+    </>
+  );
+};

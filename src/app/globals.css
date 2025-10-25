@@ -32,6 +32,16 @@ body {
 }
 
 body::selection {
-  background-color: #3f3f4670;
-  color: #ecfccb;
+  background-color: #fff;
+  color: #000;
 }
+
+
+.font-satoshi {
+  font-family: 'Satoshi', sans-serif;
+}
+
+.font-array {
+  font-family: 'Array', sans-serif;
+}
+

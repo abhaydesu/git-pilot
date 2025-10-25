@@ -1,20 +1,18 @@
 import type { Metadata, Viewport } from "next";
-import { Poppins } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
-import InteractiveBackground from "./components/Background";
-import Container from "./components/container";
 
-const poppins = Poppins({
+
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["600"],
-});
+  weight: ['100', '300', '500', '600', '700', '900']
+})
 
 export const metadata: Metadata = {
   title: "Git-Pilot",
   description: "An AI git assistant, right in your CLI.",
 };
 
-// Add this viewport export
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
@@ -28,18 +26,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${poppins.className} relative min-h-screen w-screen overflow-x-hidden text-white `}
-      >
-        <InteractiveBackground
-          shape="square"
-          pixelSize={3}
-          inkColor="#a3a3a3"
+      <head>
+        <link
+          href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap"
+          rel="stylesheet"
         />
-        <main >
-          <Container className="pt-20 max-w-5xl bg-neutral-950/95 border border-neutral-700">{children}</Container>
+        <link href="https://api.fontshare.com/v2/css?f[]=array@400,600&display=swap" rel="stylesheet"></link>
+      </head>
+      <body
+        className={`${inter.className} font-satoshi `}
+      >
+          
+                <main >
+                  {children}
         </main>
-        
       </body>
     </html>
   );

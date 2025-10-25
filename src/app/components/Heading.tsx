@@ -7,7 +7,7 @@ type HeadingProps = PropsWithChildren<{
 
 export const Heading = ({ children, className = "" }: HeadingProps) => {
   return (
-    <div className={`text-6xl tracking-tight [text-shadow:var(--shadow-custom)] text-white text-center mx-auto ${className} -right-10`}>
+    <div className={`md:text-8xl text-6xl tracking-tight [text-shadow:var(--shadow-custom)] text-white font-bold text-center mx-auto ${className} -right-10`}>
       {children}
     </div>
   );
