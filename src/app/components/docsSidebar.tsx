@@ -25,7 +25,12 @@ export const DocsSidebar = () => {
 
   return (
     // Position sticky to account for navbar (h-20) + top padding (pt-16)
-    <aside className="sticky top-36 h-[calc(100vh-9rem)] py-16">
+    <aside className="sticky top-36 h-[calc(100vh-9rem)] py-4">
+      <div className="mb-8 ml-5">
+        <Link href="/" className="">
+        <img src="/logo.png" height={40} width={40} alt="logo" className="hover:scale-110 transition-all duration-300"/>
+        </Link>
+      </div>
       <nav className="flex flex-col space-y-8 border-l border-neutral-800 pl-6">
         <div>
           <h3 className="mb-3 font-mono text-sm font-semibold uppercase tracking-widest text-neutral-200">
