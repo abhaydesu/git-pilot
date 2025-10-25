@@ -3,10 +3,9 @@
 import React, { useEffect, useState } from "react";
 import AsciiArtBackground from "./ui/AsciiiBackground";
 import Heading from "./Heading";
-import { Subheading } from "./subheading";
 import CodeBlock from "./code-block";
 import Link from "next/link";
-import { ChevronsRight, Dot, Redo } from "lucide-react";
+import { ChevronsRight, Dot } from "lucide-react";
 
 export const Landing: React.FC = () => {
   // Responsive props for the Ascii background.

@@ -80,7 +80,7 @@ export default function AsciiArtBackground({
       canvas.style.height = `${ch}px`;
       canvas.width = Math.max(1, Math.round(cw * dpr));
       canvas.height = Math.max(1, Math.round(ch * dpr));
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0); // work in CSS pixels
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0); 
     }
 
     resize();
