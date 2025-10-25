@@ -15,7 +15,6 @@ export const Features = () => {
         <Scales />
         <Supercharge />
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-16 lg:gap-8">
-          
           {/* Bento Grid container (Takes 3 columns on LG) */}
           <div className="lg:col-span-3 mt-5">
             <BentoGridThirdDemo />
@@ -24,7 +23,6 @@ export const Features = () => {
           {/* Feature Cards container (Takes 2 columns on LG) */}
           <div className="lg:col-span-2 mt-5">
             <div className="flex flex-col space-y-5">
-              
               {/* Card 1 */}
               <div className="bg-neutral-900 p-2 group group">
                 <div className="bg-neutral-950 border border-neutral-800 rounded-xl py-4 px-6">
@@ -41,7 +39,7 @@ export const Features = () => {
                   </div>
                 </div>
               </div>
-              
+
               {/* Card 2 */}
               <div className="bg-neutral-900 p-2 group">
                 <div className="bg-neutral-950 border border-neutral-800 rounded-xl py-4 px-6">
@@ -59,7 +57,7 @@ export const Features = () => {
                   </div>
                 </div>
               </div>
-              
+
               {/* Card 3 */}
               <div className="bg-neutral-900 p-2 group">
                 <div className="bg-neutral-950 border border-neutral-800 rounded-xl py-4 px-6">
@@ -77,7 +75,6 @@ export const Features = () => {
                   </div>
                 </div>
               </div>
-              
             </div>
           </div>
         </div>

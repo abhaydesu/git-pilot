@@ -125,7 +125,8 @@ const SkeletonThree = () => {
       transition={{ duration: 6, repeat: Infinity, repeatType: "reverse" }}
       className="flex flex-1 w-full h-full min-h-[6rem] rounded-lg overflow-hidden"
       style={{
-        background: "linear-gradient(-45deg, rgba(82, 82, 82, 0.624), rgba(64, 64, 64, 0.624), rgba(38, 38, 38, 0.624), rgba(23, 23, 23, 0.624))",
+        background:
+          "linear-gradient(-45deg, rgba(82, 82, 82, 0.624), rgba(64, 64, 64, 0.624), rgba(38, 38, 38, 0.624), rgba(23, 23, 23, 0.624))",
         backgroundSize: "400% 400%",
         border: "1px solid rgba(255,255,255,0.03)",
       }}
@@ -212,8 +213,8 @@ const SkeletonFive = () => {
       >
         <div className="h-10 w-10 rounded-full bg-gradient-to-r from-[#d4d4d4] to-[#737373]" />
         <p className="text-xs text-neutral-400 font-mono">
-          Summarizes very large diffs into concise, readable summaries that
-          fit within limits.
+          Summarizes very large diffs into concise, readable summaries that fit
+          within limits.
         </p>
       </motion.div>
 

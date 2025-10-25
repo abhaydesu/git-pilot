@@ -1,5 +1,4 @@
 'use client';
-// AsciiArtBackground.tsx
 import React, { useEffect, useRef } from "react";
 
 export interface AsciiArtBackgroundProps {
@@ -17,11 +16,7 @@ export interface AsciiArtBackgroundProps {
   style?: React.CSSProperties;
 }
 
-/**
- * AsciiArtBackground
- * - Procedural, animated ASCII art (horizontal-line aesthetic).
- * - No external libs. Uses canvas and draws monospace characters.
- */
+
 export default function AsciiArtBackground({
   width = "100%",
   height = "100%",
@@ -67,7 +62,7 @@ export default function AsciiArtBackground({
   useEffect(() => {
     const canvas = canvasRef.current!;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
+const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
     if (!ctx) return;
 
     const dpr = typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1;
