@@ -1,7 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
 import React from "react";
-import { BentoGrid, BentoGridItem } from "./ui/BentoGrids";
+import { BentoGrid, BentoGridItem } from "./BentoGrids";
 
 import {
   IconBoxAlignRightFilled,
@@ -24,8 +24,8 @@ export function BentoGridThirdDemo() {
   return (
     // REMOVED: col-span-3, mt-5, mx-auto
     // ADDED: w-full (was already present, but important)
-    <div className="bg-neutral-900 p-2 w-full max-w-4xl">
-      <BentoGrid className="max-w-4xl mx-auto md:auto-rows-[20rem]">
+    <div className="bg-neutral-900 p-2 w-full max-w-5xl">
+      <BentoGrid className="max-w-5xl mx-auto md:auto-rows-[20rem]">
         {items.map((item, i) => (
           <BentoGridItem
             key={i}
