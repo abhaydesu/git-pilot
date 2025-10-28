@@ -5,9 +5,25 @@ export const Supercharge = () => {
   return (
     <>
       <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-3xl md:text-5xl font-semibold text-white mb-16 font-satoshi border border-neutral-800 py-4 px-1 max-w-3xl mx-auto">
-          Supercharge Your <span className="font-array">Git</span> Workflow
-        </h2>
+        <h2
+  className="
+    text-3xl md:text-5xl font-semibold text-white mb-16 font-satoshi
+    max-w-4xl mx-auto py-4 px-1
+    rounded-lg
+    border border-white/10
+    bg-neutral-900/70
+    bg-[image:radial-gradient(circle_at_center,rgba(255,255,255,0.03)_1px,transparent_1px)]
+    bg-[size:8px_8px]
+    shadow-inner shadow-black/20
+    transition-all duration-300
+    hover:border-white/20
+    hover:shadow-lg
+    hover:-translate-y-px
+  "
+>
+  <span className="font-array md:text-6xl">Supercharge </span>Your Git
+  Workflow
+</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           <div className="bg-neutral-900 border border-neutral-800">

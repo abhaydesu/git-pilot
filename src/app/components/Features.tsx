@@ -3,7 +3,7 @@ import React from "react";
 import { Scales } from "./Scales";
 import { Supercharge } from "./Supercharge";
 import BentoGridThirdDemo from "./ui/Bento";
-import { Box, GitBranch, Sparkle } from "lucide-react";
+import { GitBranchPlus, Sparkle } from "lucide-react";
 
 export const Features = () => {
   return (
@@ -26,8 +26,8 @@ export const Features = () => {
               {/* Card 1 */}
               <div className="bg-neutral-900 p-2 group group">
                 <div className="bg-neutral-950 border border-neutral-800 rounded-xl py-4 px-6">
-                  <div className="w-full rounded-lg py-3 group-hover:scale-105 transition-all duration-300 group-hover:-rotate-6">
-                    <GitBranch height={25} width={25} />
+                  <div className="w-full rounded-lg py-3 ">
+                    <GitBranchPlus height={25} width={25} className="group-hover:scale-105 transition-all duration-300 group-hover:-rotate-10"/>
                   </div>
                   <div className="space-y-2">
                     <h3 className="font-semibold text-black text-xl dark:text-white">
@@ -43,7 +43,7 @@ export const Features = () => {
               {/* Card 2 */}
               <div className="bg-neutral-900 p-2 group">
                 <div className="bg-neutral-950 border border-neutral-800 rounded-xl py-4 px-6">
-                  <div className="w-fit rounded-lg py-3 group-hover:scale-105 transition-all duration-300 group-hover:rotate-6">
+                  <div className="w-fit rounded-lg py-3 group-hover:scale-105 transition-all duration-300 group-hover:rotate-10">
                     <Sparkle height={25} width={25} />
                   </div>
                   <div className="space-y-2">

@@ -39,7 +39,7 @@ const faqs: FAQ[] = [
     question: "What if I make a mistake?",
     answer:
       "We built a magic `git pilot undo` command for that. It analyzes your recent Git history and suggests the safest command to reverse your last major action, like a bad commit or merge.",
-  },
+  }
 ];
 
 export const FaqSection: React.FC = () => {
@@ -48,76 +48,84 @@ export const FaqSection: React.FC = () => {
   return (
     <section
       id="faq"
-      // Removed px-6, letting the inner container handle horizontal spacing
-      className="relative w-full py-10 border-y border-neutral-800 mt-10"
+      className="relative w-full py-10 px-6 border-y border-neutral-800 mt-10"
       aria-labelledby="faq-heading"
     >
-      {/* Changed mx-4 to responsive mx-4 md:mx-10 */}
-      <div className=" border border-dashed border-neutral-800 mx-4 md:mx-10 py-20 relative">
-        <FloatingCorners />
-        <div className="max-w-4xl mx-auto px-4"> {/* Added px-4 for small screen gutter */}
-          {/* Heading */}
-          <div className="text-center mb-12">
-            <h2
-              id="faq-heading"
-              // This is already responsive
-              className="font-mono text-3xl md:text-4xl font-extrabold text-neutral-100 tracking-tight"
-            >
-              Frequently Asked <span className="font-array">Questions</span>
-            </h2>
-            <p className="mt-3 text-neutral-400 font-mono text-xs sm:text-sm"> {/* Tweaked text size */}
-              Common queries about Git Pilot and how it works
-            </p>
-          </div>
-
-          {/* FAQ List */}
-          <div className="space-y-4">
-            {faqs.map((faq, index) => {
-              const isOpen = openIndex === index;
-              return (
-                <div
-                  key={index}
-                  className="border border-neutral-800 rounded-xl bg-neutral-900/70 backdrop-blur-sm 
-                             overflow-hidden transition-colors duration-200 hover:border-neutral-700"
-                >
-                  <button
-                    onClick={() =>
-                      setOpenIndex(isOpen ? null : index)
-                    }
-                    className="w-full flex justify-between items-center px-5 py-4 text-left font-mono 
-                                 text-sm md:text-base text-neutral-200" // This is already responsive
-                  >
-                    <span className="font-semibold">{faq.question}</span>
-                    <motion.span
-                      initial={false}
-                      animate={{ rotate: isOpen ? 45 : 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="text-neutral-500 text-xl select-none"
-                    >
-                      +
-                    </motion.span>
-                  </button>
-
-                  <AnimatePresence initial={false}>
-                    {isOpen && (
-                      <motion.div
-                        key="content"
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.25, ease: "easeInOut" }}
-                      >
-                        <div className="px-5 pb-5 pt-0 text-neutral-400 font-mono text-sm leading-relaxed border-t border-neutral-800/70">
-                          {faq.answer}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              );
-            })}
-          </div>
+        <div className=" border border-dashed border-neutral-800 mx-4 py-20 relative">
+            <FloatingCorners />
+      <div className="max-w-4xl mx-auto">
+        {/* Heading */}
+        <div className="text-center mb-12">
+          <h2
+            id="faq-heading"
+            className=" text-3xl md:text-5xl font-semibold text-white mb-16 font-satoshi
+    max-w-4xl mx-auto py-4 px-1
+    rounded-lg
+    border border-white/10
+    bg-neutral-900/70
+    bg-[image:radial-gradient(circle_at_center,rgba(255,255,255,0.03)_1px,transparent_1px)]
+    bg-[size:8px_8px]
+    shadow-inner shadow-black/20
+    transition-all duration-300
+    hover:border-white/20
+    hover:shadow-lg
+    hover:-translate-y-px"
+          >
+            Frequently Asked <span className="font-array md:text-6xl">Questions</span>
+          </h2>
+          <p className="mt-8 text-neutral-400 font-mono text-sm">
+            Common queries about Git Pilot and how it works
+          </p>
         </div>
+
+        {/* FAQ List */}
+        <div className="space-y-4">
+          {faqs.map((faq, index) => {
+            const isOpen = openIndex === index;
+            return (
+              <div
+                key={index}
+                className="border border-neutral-800 rounded-xl bg-neutral-900/70 backdrop-blur-sm 
+                            overflow-hidden transition-colors duration-200 hover:border-neutral-700"
+              >
+                <button
+                  onClick={() =>
+                    setOpenIndex(isOpen ? null : index)
+                  }
+                  className="w-full flex justify-between items-center px-5 py-4 text-left font-mono 
+                                   text-sm md:text-base text-neutral-200"
+                >
+                  <span className="font-semibold">{faq.question}</span>
+                  <motion.span
+                    initial={false}
+                    animate={{ rotate: isOpen ? 45 : 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="text-neutral-500 text-xl select-none"
+                  >
+                    +
+                  </motion.span>
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      key="content"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.25, ease: "easeInOut" }}
+                    >
+                      <div className="px-5 pb-5 pt-0 text-neutral-400 font-mono text-sm leading-relaxed border-t border-neutral-800/70">
+                        {faq.answer}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
+        </div>
+      </div>
       </div>
     </section>
   );
