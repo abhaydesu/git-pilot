@@ -28,30 +28,30 @@ export const Supercharge = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           <div className="bg-neutral-900 border border-neutral-800">
             <div
-              className="rounded-xl border border-neutral-800 bg-neutral-950 p-6 md:p-8 m-2 shadow-2xl
+              className="rounded-xl border group border-neutral-800 bg-neutral-950 p-6 md:p-8 m-2 shadow-2xl
                        flex flex-col items-center text-center"
             >
-              <h3 className="text-2xl font-semibold text-neutral-100 mb-4">
+              <h3 className="text-2xl font-semibold text-neutral-100 mb-4 group-hover:translate-y-1 transition-all duration-300">
                 AI Commits
               </h3>
-              <p className="text-neutral-400 mb-6">
+              <p className="text-neutral-400 mb-6 group-hover:-translate-y-1 transition-all duration-300">
                 Generate conventional commit messages from your staged changes,
                 with or without an intent.
               </p>
               <div className="w-full space-y-4  mt-4 text-left">
-                <div className="bg-neutral-900 border border-neutral-800 p-3 rounded-lg text-neutral-300 hover:scale-102 hover:text-white transition-all duration-300  flex flex-row justify-start items-center">
+                <div className="bg-neutral-900 border group-hover:-translate-y-1 border-neutral-800 p-3 rounded-lg text-neutral-300 hover:scale-102 hover:text-white transition-all duration-300  flex flex-row justify-start items-center">
                   <span className="mr-2">
                     <Lightbulb height={17} width={17} />
                   </span>{" "}
                   Commit from Diff
                 </div>
-                <div className="bg-neutral-900 border border-neutral-800 p-3 rounded-lg text-neutral-300 hover:scale-102 hover:text-white transition-all duration-300  flex flex-row justify-start items-center">
+                <div className="bg-neutral-900 border group-hover:-translate-y-1 border-neutral-800 p-3 rounded-lg text-neutral-300 hover:scale-102 hover:text-white transition-all duration-300  flex flex-row justify-start items-center">
                   <span className="mr-2">
                     <Cog height={17} width={17} />
                   </span>{" "}
                   Commit with Intent
                 </div>
-                <div className="bg-neutral-900 border border-neutral-800 p-3 rounded-lg text-neutral-300 hover:scale-102 hover:text-white transition-all duration-300  flex flex-row justify-start items-center">
+                <div className="bg-neutral-900 border group-hover:-translate-y-1 border-neutral-800 p-3 rounded-lg text-neutral-300 hover:scale-102 hover:text-white transition-all duration-300  flex flex-row justify-start items-center">
                   <span className="mr-2 ">
                     <Check height={17} width={17} />
                   </span>{" "}
@@ -64,12 +64,12 @@ export const Supercharge = () => {
           <div className="bg-neutral-900 border border-neutral-800">
             <div
               className="group rounded-xl border border-neutral-800 bg-neutral-950 p-6 md:p-8 md:pb-9 shadow-2xl
-                       flex flex-col items-center text-center m-2"
+                       flex flex-col items-center text-center m-2 "
             >
-              <h3 className="text-2xl font-semibold text-neutral-100 mb-4">
+              <h3 className="text-2xl font-semibold text-neutral-100 mb-4 group-hover:translate-y-1 transition-all duration-300">
                 AI Commands
               </h3>
-              <p className="text-neutral-400 mb-6">
+              <p className="text-neutral-400 mb-6 group-hover:-translate-y-1 transition-all duration-300">
                 Translate plain English into precise, safe Git commands.
               </p>
               <div
@@ -95,30 +95,30 @@ export const Supercharge = () => {
 
           <div className="bg-neutral-900 border border-neutral-800">
             <div
-              className="rounded-xl border border-neutral-800 bg-neutral-950 p-6 md:p-8 md:pb-10 shadow-2xl
+              className="rounded-xl group border border-neutral-800 bg-neutral-950 p-6 md:p-8 md:pb-10 shadow-2xl
                        flex flex-col items-center text-center m-2"
             >
-              <h3 className="text-2xl font-semibold text-neutral-100 mb-4">
+              <h3 className="text-2xl font-semibold text-neutral-100 mb-4 group-hover:translate-y-1 transition-all duration-300">
                 Smart Utilities
               </h3>
-              <p className="text-neutral-400 mb-8">
+              <p className="text-neutral-400 mb-8 group-hover:-translate-y-1 transition-all duration-300">
                 Maintain a clean and consistent repository with intelligent
                 suggestions.
               </p>
               <div className="w-full space-y-4 text-left">
-                <div className="bg-neutral-900 border border-neutral-800 p-3 rounded-lg text-neutral-300 hover:text-white hover:scale-102 transition-all duration-300  flex flex-row justify-start items-center">
+                <div className="bg-neutral-900 border border-neutral-800 p-3 rounded-lg text-neutral-300 hover:text-white hover:scale-102 transition-all duration-300  flex flex-row justify-start items-center group-hover:-translate-y-1">
                   <span className="mr-2">
                     <GitBranch />
                   </span>{" "}
                   Generate Branch Name
                 </div>
-                <div className="bg-neutral-900 border border-neutral-800 p-3 rounded-lg text-neutral-300 hover:text-white hover:scale-102 transition-all duration-300  flex flex-row justify-start items-center">
+                <div className="bg-neutral-900 border border-neutral-800 p-3 rounded-lg text-neutral-300 hover:text-white hover:scale-102 transition-all duration-300  flex flex-row justify-start items-center group-hover:-translate-y-1">
                   <span className="mr-2">
                     <Undo />
                   </span>{" "}
                   Undo Last Action
                 </div>
-                <div className="bg-neutral-900 border border-neutral-800 p-3 rounded-lg text-neutral-300 hover:text-white hover:scale-102 transition-all duration-300  flex flex-row justify-start items-center">
+                <div className="bg-neutral-900 border border-neutral-800 p-3 rounded-lg text-neutral-300 hover:text-white hover:scale-102 transition-all duration-300  flex flex-row justify-start items-center group-hover:-translate-y-1">
                   <span className="mr-2">
                     <Shield />
                   </span>{" "}
