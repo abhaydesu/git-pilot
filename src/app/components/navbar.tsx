@@ -40,7 +40,7 @@ export const Navbar = () => {
     <>
       {/* Top Gradient Fade */}
       <div
-        className={`fixed top-0 bg-gradient-to-b from-neutral-900 via-neutral-950 to-transparent h-28 w-full ${
+        className={`fixed top-0 bg-gradient-to-b from-neutral-950 via-neutral-950 to-transparent h-28 w-full ${
           isVisible
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
