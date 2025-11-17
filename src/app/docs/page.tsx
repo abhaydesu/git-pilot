@@ -27,8 +27,7 @@ export default function DocsPage() {
         </h2>
         <p className="mt-6 text-lg leading-relaxed text-neutral-300 font-satoshi max-w-4xl">
           Git-Pilot is a CLI tool that communicates with a secure backend API
-          powered by Google&apos;s Gemini models. This architecture keeps your
-          AI API keys safe and off your local machine. You always have the final
+          powered by Google&apos;s Gemini models. You always have the final
           say, with the ability to review, edit, or cancel any AI suggestion
           before it runs.
         </p>
