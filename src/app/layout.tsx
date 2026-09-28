@@ -1,22 +1,30 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { DM_Sans, IBM_Plex_Mono, Newsreader } from "next/font/google";
 import "./globals.css";
 
-
-const inter = Inter({
+// DM Sans and Newsreader both have an optical-size axis: large headlines get
+// the tighter display cut automatically, body text gets the sturdier text cut.
+const sans = DM_Sans({ subsets: ["latin"], axes: ["opsz"], variable: "--font-dm" });
+const serif = Newsreader({
   subsets: ["latin"],
-  weight: ['100', '300', '500', '600', '700', '900']
-})
+  axes: ["opsz"],
+  style: ["normal", "italic"],
+  variable: "--font-news",
+});
+const mono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-plex",
+});
 
 export const metadata: Metadata = {
-  title: "Git-Pilot",
+  title: "Git Pilot",
   description: "An AI git assistant, right in your CLI.",
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1, // Optional: prevents users from zooming in
 };
 
 export default function RootLayout({
@@ -25,21 +33,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${sans.variable} ${serif.variable} ${mono.variable}`}
+      suppressHydrationWarning
+    >
       <head>
+        {/* Array: the original Git Pilot wordmark face */}
+        <link rel="preconnect" href="https://api.fontshare.com" />
         <link
-          href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap"
+          href="https://api.fontshare.com/v2/css?f[]=array@400&display=swap"
           rel="stylesheet"
         />
-        <link href="https://api.fontshare.com/v2/css?f[]=array@400,600&display=swap" rel="stylesheet"></link>
       </head>
-      <body
-        className={`${inter.className} font-satoshi `}
-      >
-          
-                <main >
-                  {children}
-        </main>
+      <body className="font-sans">
+        <main>{children}</main>
       </body>
     </html>
   );

@@ -1,172 +1,118 @@
-// app/components/Navbar.tsx
-"use client"; // Required for useState and useEffect
+"use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import Logo from "./ui/Logo";
+
+const links = [
+  { label: "Docs", href: "/docs", external: false },
+  { label: "npm", href: "https://www.npmjs.com/package/@abhaydesu/git-pilot", external: true },
+  { label: "GitHub", href: "https://github.com/abhaydesu/git-pilot-cli", external: true },
+];
+
+const linkClass =
+  "press focus-ring rounded-full px-3 py-2 text-[15px] text-ink/70 hover:text-ink";
+
+const NavLink = ({
+  l,
+  className,
+  onClick,
+}: {
+  l: (typeof links)[number];
+  className: string;
+  onClick?: () => void;
+}) =>
+  l.external ? (
+    <a href={l.href} target="_blank" rel="noopener noreferrer" className={className} onClick={onClick}>
+      {l.label}
+    </a>
+  ) : (
+    <Link href={l.href} className={className} onClick={onClick}>
+      {l.label}
+    </Link>
+  );
 
 export const Navbar = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      // Check if user has scrolled more than 50% of the viewport height
-      const shouldBeVisible = window.scrollY > window.innerHeight * 0.5;
-      if (shouldBeVisible !== isVisible) {
-        setIsVisible(shouldBeVisible);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    // Cleanup function to remove the event listener
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    const onResize = () => window.innerWidth >= 768 && setOpen(false);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("resize", onResize);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("resize", onResize);
     };
-  }, [isVisible]); // Re-run effect only if isVisible changes
-
-  // Close mobile menu if window is resized to desktop width
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        setIsMobileMenuOpen(false);
-      }
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const bar =
+    "block h-0.5 w-5 rounded-full bg-ink transition-[transform,opacity] duration-200 ease-out-strong";
+
   return (
-    <>
-      {/* Top Gradient Fade */}
-      <div
-        className={`fixed top-0 bg-gradient-to-b from-neutral-950 via-neutral-950 to-transparent h-28 w-full ${
-          isVisible
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
-        } z-40 
-        transition-all duration-300 ease-out`}
-      />
+    <header
+      className={`fixed inset-x-0 top-0 z-50 border-b bg-cream/90 backdrop-blur-xl transition-colors duration-200 ease-out-strong ${
+        scrolled || open ? "border-ink/10" : "border-transparent"
+      }`}
+    >
+      <div className="mx-auto flex h-16 max-w-[1120px] items-center justify-between px-5">
+        <Link
+          href="/"
+          onClick={() => setOpen(false)}
+          aria-label="Git Pilot home"
+          className="press focus-ring rounded-lg"
+        >
+          <Logo />
+        </Link>
 
-      <div
-        className={`
-          fixed 
-          w-[90%] md:w-8xl 
-          flex items-center 
-          rounded-xl 
-          justify-between 
-          bg-neutral-950/90 
-          border border-neutral-800 
-          top-4 md:top-10 
-          p-4 md:py-5 md:px-7
-          left-1/2 -translate-x-1/2 
-          z-50 
-          backdrop-blur-sm
-          transition-all duration-300 ease-out
-          ${
-            isVisible
-              ? "opacity-100 translate-y-0 pointer-events-auto"
-              : "opacity-0 -translate-y-16 pointer-events-none"
-          }
-        `}
-      >
-        <div className="font-array text-3xl hover:scale-105 transition-all duration-300">
-          <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
-            Git Pilot
-          </Link>
-        </div>
-
-        <div className="hidden md:flex gap-8 text-lg font-mono">
+        <div className="hidden items-center gap-1 md:flex">
+          <nav aria-label="Primary" className="flex items-center">
+            {links.map((l) => (
+              <NavLink key={l.label} l={l} className={linkClass} />
+            ))}
+          </nav>
           <Link
             href="/docs"
-            className="text-neutral-300 hover:text-white transition-all duration-300"
+            className="press focus-ring ml-3 rounded-full bg-ink px-4 py-2 text-[15px] text-paper hover:bg-ink/85"
           >
-            Docs
+            Get started
           </Link>
-          <a
-            target="_blank"
-            href="https://www.npmjs.com/package/@abhaydesu/git-pilot"
-            className="text-neutral-300 hover:text-white transition-all duration-300"
-          >
-            Npm
-          </a>
-          <a
-            target="_blank"
-            href="https://github.com/abhaydesu/git-pilot-cli"
-            className="text-neutral-300 hover:text-white transition-all duration-300"
-          >
-            Github
-          </a>
         </div>
 
         <button
-          className="md:hidden z-50 p-2 -mr-2" // Added padding for easier tapping
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          type="button"
+          onClick={() => setOpen((o) => !o)}
           aria-label="Toggle menu"
+          aria-expanded={open}
+          className="press focus-ring -mr-2 grid size-10 place-items-center rounded-full md:hidden"
         >
-          <div className="space-y-1.5">
-            <span
-              className={`block w-6 h-0.5 bg-neutral-300 transition-all duration-300 ease-out ${
-                isMobileMenuOpen ? "rotate-45 translate-y-[8px]" : ""
-              }`}
-            ></span>
-            <span
-              className={`block w-6 h-0.5 bg-neutral-300 transition-all duration-300 ease-out ${
-                isMobileMenuOpen ? "opacity-0" : ""
-              }`}
-            ></span>
-            <span
-              className={`block w-6 h-0.5 bg-neutral-300 transition-all duration-300 ease-out ${
-                isMobileMenuOpen ? "-rotate-45 -translate-y-[8px]" : ""
-              }`}
-            ></span>
-          </div>
+          <span className="space-y-1.5">
+            <span className={`${bar} ${open ? "translate-y-[4px] rotate-45" : ""}`} />
+            <span className={`${bar} ${open ? "-translate-y-[4px] -rotate-45" : ""}`} />
+          </span>
         </button>
       </div>
 
-      {/* Mobile Menu Dropdown */}
-      <div
-        className={`
-          fixed w-[90%] left-1/2 -translate-x-1/2
-          top-[5.75rem] // Positioned below the navbar (1rem top + 4.25rem height + 0.5rem gap)
-          md:hidden // Critical: only show on mobile
-          bg-neutral-950/90 border border-neutral-800 rounded-xl
-          backdrop-blur-sm
-          transition-all duration-300 ease-out
-          overflow-hidden z-50
-          ${
-            isVisible && isMobileMenuOpen
-              ? "opacity-100 translate-y-0 pointer-events-auto"
-              : "opacity-0 -translate-y-16 pointer-events-none"
-          }
-        `}
+      <nav
+        aria-label="Mobile"
+        className={`origin-top border-t border-ink/10 bg-cream px-3 py-2 transition-[opacity,transform] duration-200 ease-out-strong md:hidden ${
+          open ? "scale-100 opacity-100" : "pointer-events-none absolute inset-x-0 scale-95 opacity-0"
+        }`}
       >
-        <div className="flex flex-col items-center gap-6 p-6 font-mono text-lg">
-          <Link
-            href="/docs"
-            className="text-neutral-300 hover:text-white transition-all duration-300"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            Docs
-          </Link>
-          <a
-            target="_blank"
-            href="https://www.npmjs.com/package/@abhaydesu/git-pilot"
-            className="text-neutral-300 hover:text-white transition-all duration-300"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            Npm
-          </a>
-          <a
-            target="_blank"
-            href="https://github.com/abhaydesu/git-pilot-cli"
-            className="text-neutral-300 hover:text-white transition-all duration-300"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            Github
-          </a>
-        </div>
-      </div>
-    </>
+        {links.map((l) => (
+          <NavLink
+            key={l.label}
+            l={l}
+            onClick={() => setOpen(false)}
+            className="press focus-ring block rounded-xl px-4 py-3 text-lg font-medium text-ink/80 hover:bg-ink/5 hover:text-ink"
+          />
+        ))}
+      </nav>
+    </header>
   );
 };

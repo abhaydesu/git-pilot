@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import FloatingCorners from "./ui/FlaotingCorners";
+import { motion, AnimatePresence, MotionConfig } from "motion/react";
+import Reveal from "./ui/Reveal";
 
 interface FAQ {
   question: string;
@@ -42,92 +42,77 @@ const faqs: FAQ[] = [
   }
 ];
 
+const EASE_OUT = [0.23, 1, 0.32, 1] as const;
+
 export const FaqSection: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section
-      id="faq"
-      className="relative w-full py-10 px-6 border-y border-neutral-800 mt-10"
-      aria-labelledby="faq-heading"
-    >
-        <div className=" border border-dashed border-neutral-800 mx-4 py-20 relative">
-            <FloatingCorners />
-      <div className="max-w-4xl mx-auto">
-        {/* Heading */}
-        <div className="text-center mb-12">
-          <h2
-            id="faq-heading"
-            className=" text-3xl md:text-5xl font-semibold text-white mb-16 font-satoshi
-    max-w-4xl mx-auto py-4 px-1
-    rounded-lg
-    border border-white/10
-    bg-neutral-900/70
-    bg-[image:radial-gradient(circle_at_center,rgba(255,255,255,0.03)_1px,transparent_1px)]
-    bg-[size:8px_8px]
-    shadow-inner shadow-black/20
-    transition-all duration-300
-    hover:border-white/20
-    hover:shadow-lg
-    hover:-translate-y-px"
-          >
-            Frequently Asked <span className="font-array md:text-6xl">Questions</span>
-          </h2>
-          <p className="mt-8 text-neutral-400 font-mono text-sm">
-            Common queries about Git Pilot and how it works
-          </p>
-        </div>
+    <MotionConfig reducedMotion="user">
+      <section id="faq" aria-labelledby="faq-heading" className="px-5 pb-32 md:pb-44">
+        <div className="mx-auto grid max-w-[1120px] gap-10 border-t border-ink/10 pt-24 md:grid-cols-[1fr_1.35fr] md:pt-32">
+          <Reveal>
+            <h2
+              id="faq-heading"
+              className="t-section text-[clamp(2.2rem,4vw,2.75rem)] text-ink md:sticky md:top-28"
+            >
+              Frequently asked
+              <br />
+              questions
+            </h2>
+          </Reveal>
 
-        {/* FAQ List */}
-        <div className="space-y-4">
-          {faqs.map((faq, index) => {
-            const isOpen = openIndex === index;
-            return (
-              <div
-                key={index}
-                className="border border-neutral-800 rounded-xl bg-neutral-900/70 backdrop-blur-sm 
-                            overflow-hidden transition-colors duration-200 hover:border-neutral-700"
-              >
-                <button
-                  onClick={() =>
-                    setOpenIndex(isOpen ? null : index)
-                  }
-                  className="w-full flex justify-between items-center px-5 py-4 text-left font-mono 
-                                   text-sm md:text-base text-neutral-200"
-                >
-                  <span className="font-semibold">{faq.question}</span>
-                  <motion.span
-                    initial={false}
-                    animate={{ rotate: isOpen ? 45 : 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="text-neutral-500 text-xl select-none"
-                  >
-                    +
-                  </motion.span>
-                </button>
-
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      key="content"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.25, ease: "easeInOut" }}
+          <div>
+            {faqs.map((faq, index) => {
+              const isOpen = openIndex === index;
+              return (
+                <div key={faq.question} className="border-b border-ink/10 first:border-t md:first:border-t-0">
+                  <h3>
+                    <button
+                      type="button"
+                      onClick={() => setOpenIndex(isOpen ? null : index)}
+                      aria-expanded={isOpen}
+                      aria-controls={`faq-panel-${index}`}
+                      className="focus-ring group flex w-full items-center gap-4 py-5 text-left text-[17px] font-medium tracking-tight text-ink"
                     >
-                      <div className="px-5 pb-5 pt-0 text-neutral-400 font-mono text-sm leading-relaxed border-t border-neutral-800/70">
-                        {faq.answer}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            );
-          })}
+                      <motion.span
+                        aria-hidden
+                        initial={false}
+                        animate={{ rotate: isOpen ? 45 : 0 }}
+                        transition={{ duration: 0.2, ease: EASE_OUT }}
+                        className="select-none text-xl leading-none text-accent"
+                      >
+                        +
+                      </motion.span>
+                      <span className="transition-colors duration-150 ease-out-strong group-hover:text-ink/70">
+                        {faq.question}
+                      </span>
+                    </button>
+                  </h3>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        id={`faq-panel-${index}`}
+                        role="region"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.25, ease: EASE_OUT }}
+                        className="overflow-hidden"
+                      >
+                        <p className="max-w-xl pb-6 pl-8 text-[16px] leading-relaxed text-ink/60">
+                          {faq.answer}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </div>
-      </div>
-    </section>
+      </section>
+    </MotionConfig>
   );
 };
 

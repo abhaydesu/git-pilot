@@ -1,7 +1,9 @@
 import { Navbar } from "./components/navbar";
 import { Footer } from "./components/footer";
 import { Landing } from "./components/Landing";
-import { Features } from "./components/Features";
+import { Commands } from "./components/Commands";
+import { FeatureRows } from "./components/FeatureRows";
+import { Principles } from "./components/Principles";
 import FaqSection from "./components/FaqSection";
 
 export default function Home() {
@@ -9,10 +11,11 @@ export default function Home() {
     <>
       <Navbar />
       <Landing />
-      <Features />
+      <Commands />
+      <FeatureRows />
+      <Principles />
       <FaqSection />
       <Footer />
-
     </>
   );
 }

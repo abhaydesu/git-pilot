@@ -88,7 +88,22 @@ const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
     let last = performance.now();
     let t = 0;
 
+    // Only animate while on screen, and not at all for reduced-motion users
+    // (they get a single static frame).
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let visible = true;
+    const observer = new IntersectionObserver(([entry]) => {
+      const wasVisible = visible;
+      visible = entry.isIntersecting;
+      if (visible && !wasVisible && !reduceMotion) {
+        last = performance.now();
+        rafRef.current = requestAnimationFrame(draw);
+      }
+    });
+    observer.observe(canvas);
+
     function draw(now: number) {
+      if (!visible) return;
       if (!startRef.current) startRef.current = now;
       const dt = (now - last) / 1000;
       last = now;
@@ -187,13 +202,14 @@ const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
       }
       ctx.globalAlpha = 1.0;
 
-      rafRef.current = requestAnimationFrame(draw);
+      if (!reduceMotion) rafRef.current = requestAnimationFrame(draw);
     }
 
     rafRef.current = requestAnimationFrame(draw);
 
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      observer.disconnect();
       window.removeEventListener("resize", resize);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps

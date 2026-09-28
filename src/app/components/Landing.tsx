@@ -1,123 +1,45 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
-import AsciiArtBackground from "./ui/AsciiiBackground";
-import Heading from "./Heading";
-import CodeBlock from "./code-block";
 import Link from "next/link";
-import { ChevronsRight, Dot } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import CodeBlock from "./code-block";
+import Reveal from "./ui/Reveal";
+import TerminalDemo from "./ui/TerminalDemo";
 
-export const Landing: React.FC = () => {
-  // Responsive props for the Ascii background.
-  // Keep desktop (md and above) identical to original values.
-  const [rowHeight, setRowHeight] = useState<number>(12);
-  const [ramp, setRamp] = useState<string>(" ._:-~=+*#%@");
-  const [speed, setSpeed] = useState<number>(0.2);
-  const [contrast, setContrast] = useState<number>(1.0);
+export const Landing = () => (
+  <section className="px-5 pb-28 pt-40 md:pb-36 md:pt-52">
+    <div className="mx-auto max-w-[1120px] text-center">
+      <Reveal>
+        <h1 className="t-display text-[clamp(3.25rem,8.2vw,6.25rem)] text-ink">
+          Git, in plain English.
+        </h1>
+      </Reveal>
 
-  useEffect(() => {
-    // Only run in browser
-    const handleResize = () => {
-      const w = window.innerWidth;
-      // Tailwind md breakpoint is 768px — keep md+ behavior identical
-      if (w < 640) {
-        // small phones: denser ascii, slightly faster for motion feel
-        setRowHeight(8);
-        setRamp(" .:-=+*#%");
-        setSpeed(0.28);
-        setContrast(0.95);
-      } else if (w < 768) {
-        // small tablets / large phones
-        setRowHeight(10);
-        setRamp(" ._:-~=+*#%@");
-        setSpeed(0.22);
-        setContrast(0.98);
-      } else {
-        // md and above — original values (no visual change on desktop)
-        setRowHeight(12);
-        setRamp(" ._:-~=+*#%@");
-        setSpeed(0.2);
-        setContrast(1.0);
-      }
-    };
+      <Reveal delay={0.06}>
+        <p className="mx-auto mt-7 max-w-[33rem] text-[17px] leading-[1.6] text-ink/65 md:text-lg">
+          Git Pilot turns a sentence into the right commit, branch name or
+          command, then waits for your OK before anything runs.
+        </p>
+      </Reveal>
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  return (
-    <div className="relative w-full min-h-screen border-b border-neutral-800">
-      <div
-        className="absolute inset-0 z-0 m-auto border border-neutral-800 pointer-events-none"
-        style={{
-          width: "96%",
-          height: "93%",
-          position: "absolute",
-          opacity: 0.4,
-        }}
-        aria-hidden
+      <Reveal
+        delay={0.12}
+        className="mt-10 flex flex-col items-center justify-center gap-5 sm:flex-row"
       >
-        <AsciiArtBackground
-          rowHeight={rowHeight}
-          ramp={ramp} // characters from light -> dark
-          speed={speed}
-          contrast={contrast}
-        />
-      </div>
-
-      {/* Content */}
-      <div className="relative z-10 flex items-start justify-center">
-        <div
-          className="mt-60 w-full max-w-3xl mx-4 md:mx-auto
-                     rounded-4xl border border-neutral-800 bg-neutral-950 p-5 sm:p-6 md:p-10 shadow-2xl"
-          role="region"
-          aria-label="Hero"
+        <CodeBlock>npm i -g @abhaydesu/git-pilot</CodeBlock>
+        <Link
+          href="/docs"
+          className="press focus-ring group inline-flex items-center gap-2 rounded-full px-2 py-2 text-[15px] text-ink/80 hover:text-ink"
         >
-          <Heading>
-            <h1 className="mx-auto max-w-2xl text-center font-semibold font-array">
-              Git Pilot
-            </h1>
-          </Heading>
+          Read the docs
+          <ArrowRight
+            aria-hidden
+            className="size-4 transition-transform duration-200 ease-out-strong group-hover:translate-x-0.5"
+          />
+        </Link>
+      </Reveal>
 
-          <h2 className="mt-4 text-center text-2xl md:text-3xl">
-            Your AI git assistant for the command line.
-          </h2>
-{/* 
-          <div className="mt-0">
-            <Subheading />
-          </div> */}
-
-          <div className="flex justify-center">
-            <CodeBlock className="mx-auto mt-16 text-center text-xs md:text-md">
-              npm install -g @abhaydesu/git-pilot
-            </CodeBlock>
-          </div>
-
-          <div className="text-center flex flex-row justify-center items-center gap-2 text-neutral-600 mt-6 text-sm md:text-md">
-            <a className="hover:text-neutral-300 hover:scale-102 transition-all duration-300" target="_blank" href="https://www.npmjs.com/package/@abhaydesu/git-pilot">npm</a> 
-            <span>
-                <Dot className="inline" />
-            </span>
-            <a className="hover:text-neutral-300 hover:scale-102 transition-all duration-300" target="_blank" href="https://github.com/abhaydesu/git-pilot-cli">github</a>
-          </div>
-
-          <div className="mx-auto text-center  mt-6 text-md md:text-xl">
-            <div>
-              Get started with{" "}
-              <Link
-                href="/docs"
-                className="text-neutral-100  hover:text-neutral-400"
-              >
-                docs
-                <ChevronsRight className="inline ml-2" height={20} width={20} />
-              </Link>
-            </div>
-          </div>
-
-          
-        </div>
-      </div>
+      <Reveal delay={0.2} className="mx-auto mt-24 max-w-[860px] text-left">
+        <TerminalDemo />
+      </Reveal>
     </div>
-  );
-};
+  </section>
+);

@@ -1,102 +1,92 @@
-"use client";
-
-import React from "react";
-import AsciiArtBackground from "./ui/AsciiiBackground";
+import Link from "next/link";
 import { IconBrandGithub, IconBrandLinkedin, IconBrandXFilled } from "@tabler/icons-react";
+import AsciiArtBackground from "./ui/AsciiiBackground";
+import CodeBlock from "./code-block";
+import Logo from "./ui/Logo";
 
+const socials = [
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/abhaydesu/", Icon: IconBrandLinkedin },
+  { label: "GitHub", href: "https://github.com/abhaydesu/", Icon: IconBrandGithub },
+  { label: "X / Twitter", href: "https://x.com/abhaydesu", Icon: IconBrandXFilled },
+];
 
-export const Footer: React.FC = () => {
-  return (
-    <footer
-      className="relative w-full px-6 py-12"
-      aria-labelledby="footer-heading"
-    >
+const links = [
+  { label: "Docs", href: "/docs" },
+  { label: "npm", href: "https://www.npmjs.com/package/@abhaydesu/git-pilot" },
+  { label: "GitHub", href: "https://github.com/abhaydesu/git-pilot-cli" },
+];
+
+/** Closing statement and footer share one ink panel, with the ASCII field behind. */
+export const Footer = ({ cta = true }: { cta?: boolean }) => (
+  <footer className="p-3">
+    <div className="relative isolate overflow-hidden rounded-[28px] bg-ink text-paper">
       <div
-        id="footer-heading"
-        className="relative md:mx-4 max-w-8xl rounded-2xl border border-neutral-800 bg-neutral-950 overflow-hidden"
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.16] [mask-image:radial-gradient(80%_70%_at_50%_30%,black,transparent)]"
       >
-        <div className="absolute inset-0 opacity-25" aria-hidden>
-          <AsciiArtBackground
-            rowHeight={10}
-            ramp=" .:-=+*#%@"
-            speed={0.18}
-            contrast={0.9}
-          />
-          {/* top fade to make content readable */}
-          <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/60 to-transparent" />
+        <AsciiArtBackground rowHeight={12} ramp=" ._:-~=+*#%@" speed={0.14} contrast={0.9} />
+      </div>
+
+      {cta && (
+        <div className="px-5 pb-24 pt-28 text-center md:pb-32 md:pt-36">
+          <h2 className="t-section mx-auto max-w-3xl text-[clamp(2.4rem,5.5vw,4rem)]">
+            Your next commit starts
+            <br />
+            with a sentence.
+          </h2>
+          <p className="mx-auto mt-5 max-w-md text-[17px] text-paper/60">
+            Free, open on npm, and ready in one line.
+          </p>
+          <div className="mt-10 flex justify-center">
+            <CodeBlock tone="light">npm i -g @abhaydesu/git-pilot</CodeBlock>
+          </div>
         </div>
+      )}
 
-        {/* Foreground content */}
-        <div
-          className="relative z-10 p-6 flex flex-col md:flex-row items-center gap-6"
-        >
-          {/* Left: author */}
-          <div className="flex items-center gap-4">
-            <div className="text-sm text-neutral-300">
-              made with &lt;3 by{" "}
-              <a
-                className="font-medium text-neutral-100 hover:text-gradient-accent"
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://abhaydesu.dev"
-              >
-                Abhay
+      <div className="mx-5 flex flex-col items-center justify-between gap-6 border-t border-paper/10 py-8 md:mx-10 md:flex-row">
+        <div className="flex flex-col items-center gap-3 md:flex-row md:gap-8">
+          <Link href="/" aria-label="Git Pilot home" className="press focus-ring rounded">
+            <Logo tone="paper" className="text-[19px]" />
+          </Link>
+          <nav aria-label="Footer" className="flex gap-5 text-[14px] text-paper/60">
+            {links.map((l) => (
+              <a key={l.label} href={l.href} className="press focus-ring rounded hover:text-paper">
+                {l.label}
               </a>
-            </div>
-          </div>
-
-          {/* Middle: ascii divider */}
-          <div className="hidden md:flex flex-1 items-center justify-center">
-            <div
-              className="font-mono text-xs text-neutral-500 select-none"
-              aria-hidden
-              style={{ letterSpacing: "0.06em" }}
-            >
-              {Array.from({ length: 40 })
-                .map((_, i) => (i % 6 === 0 ? "~" : i % 3 === 0 ? "-" : "."))
-                .join("")}
-            </div>
-          </div>
-
-          {/* Right: social links */}
-          <div className="flex items-center gap-6">
+            ))}
+          </nav>
+        </div>
+        <div className="flex items-center gap-4">
+          <p className="text-[14px] text-paper/50">
+            made with &lt;3 by{" "}
             <a
-              className="flex items-center gap-2 text-neutral-300 hover:text-white hover:scale-112 transition-all duration-300"
+              className="press focus-ring rounded text-paper/80 hover:text-paper"
               target="_blank"
               rel="noopener noreferrer"
-              href="https://www.linkedin.com/in/abhaydesu/"
-              aria-label="LinkedIn"
+              href="https://abhaydesu.dev"
             >
-              <IconBrandLinkedin height={22} width={22} />
-              <span className="sr-only">LinkedIn</span>
+              Abhay
             </a>
-
-            <a
-              className="flex items-center gap-2 text-neutral-300 hover:text-white hover:scale-112 transition-all duration-300"
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://github.com/abhaydesu/"
-              aria-label="GitHub"
-            >
-              <IconBrandGithub height={22} width={22} />
-              <span className="sr-only">GitHub</span>
-            </a>
-
-            <a
-              className="flex items-center gap-2 text-neutral-300 hover:text-white hover:scale-112 transition-all duration-300"
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://x.com/abhaydesu"
-              aria-label="X / Twitter"
-            >
-              <IconBrandXFilled height={22} width={22} />
-              <span className="sr-only">X</span>
-            </a>
-          </div>
+          </p>
+          <ul className="flex items-center">
+            {socials.map(({ label, href, Icon }) => (
+              <li key={label}>
+                <a
+                  className="press focus-ring grid size-9 place-items-center rounded-full text-paper/50 hover:bg-paper/10 hover:text-paper"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={href}
+                  aria-label={label}
+                >
+                  <Icon aria-hidden size={17} />
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
-    </footer>
-  );
-};
+    </div>
+  </footer>
+);
 
 export default Footer;

@@ -1,106 +1,75 @@
-// app/components/DocsSidebar.tsx
-"use client"; // <-- Add this to make it a Client Component
+"use client";
 
-import Link from "next/link"; // We keep Link for any potential *future* page links
+import { useEffect, useState } from "react";
+
+type Item = { id: string; label: string; dot?: string };
+
+const groups: { title: string; items: Item[] }[] = [
+  {
+    title: "Guide",
+    items: [
+      { id: "how-it-works", label: "How it works" },
+      { id: "installation", label: "Installation" },
+    ],
+  },
+  {
+    title: "Commands",
+    items: [
+      { id: "usage-commit", label: "commit", dot: "bg-commit" },
+      { id: "usage-run", label: "run", dot: "bg-run" },
+      { id: "usage-branch", label: "branch", dot: "bg-branch" },
+      { id: "usage-undo", label: "undo", dot: "bg-undo" },
+    ],
+  },
+];
 
 export const DocsSidebar = () => {
-  // This function handles the smooth scroll
-  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault(); // Stop the default browser "jump"
+  const [active, setActive] = useState<string>(groups[0].items[0].id);
 
-    // Get the target ID from the link's href (e.g., "#how-it-works")
-    const targetId = e.currentTarget.hash.substring(1);
-    const targetElement = document.getElementById(targetId);
-
-    if (targetElement) {
-      // The browser will automatically account for the 'scroll-mt-48'
-      // class on your target sections in page.tsx,
-      // so we just need to tell it to scroll smoothly.
-      targetElement.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  };
+  // Highlight the section currently crossing the top third of the viewport.
+  useEffect(() => {
+    const ids = groups.flatMap((g) => g.items.map((i) => i.id));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const hit = entries.find((e) => e.isIntersecting);
+        if (hit) setActive(hit.target.id);
+      },
+      { rootMargin: "-20% 0px -70% 0px" },
+    );
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    // Position sticky to account for navbar (h-20) + top padding (pt-16)
-    <aside className="sticky top-36 h-[calc(100vh-9rem)] py-4">
-      <div className="mb-8 ml-5">
-        <Link href="/" className="">
-        <img src="/logo.png" height={40} width={40} alt="logo" className="hover:scale-110 transition-all duration-300"/>
-        </Link>
-      </div>
-      <nav className="flex flex-col space-y-8 border-l border-neutral-800 pl-6">
-        <div>
-          <h3 className="mb-3 font-mono text-sm font-semibold uppercase tracking-widest text-neutral-200">
-            Guide
-          </h3>
-          <ul className="space-y-3">
-            <li>
-              {/* Use <a> tags for on-page scrolling */}
-              <a
-                href="#how-it-works"
-                onClick={handleSmoothScroll}
-                className="font-mono text-base text-neutral-400 transition-colors duration-200 hover:text-white cursor-pointer"
-              >
-                How It Works
-              </a>
-            </li>
-            <li>
-              <a
-                href="#installation"
-                onClick={handleSmoothScroll}
-                className="font-mono text-base text-neutral-400 transition-colors duration-200 hover:text-white cursor-pointer"
-              >
-                Installation
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h3 className="mb-3 font-mono text-sm font-semibold uppercase tracking-widest text-neutral-200">
-            Commands
-          </h3>
-          <ul className="space-y-3">
-            <li>
-              <a
-                href="#usage-commit"
-                onClick={handleSmoothScroll}
-                className="font-mono text-base text-neutral-400 transition-colors duration-200 hover:text-white cursor-pointer"
-              >
-                git pilot commit
-              </a>
-            </li>
-            <li>
-              <a
-                href="#usage-run"
-                onClick={handleSmoothScroll}
-                className="font-mono text-base text-neutral-400 transition-colors duration-200 hover:text-white cursor-pointer"
-              >
-                git pilot run
-              </a>
-            </li>
-            <li>
-              <a
-                href="#usage-branch"
-                onClick={handleSmoothScroll}
-                className="font-mono text-base text-neutral-400 transition-colors duration-200 hover:text-white cursor-pointer"
-              >
-                git pilot branch
-              </a>
-            </li>
-            <li>
-              <a
-                href="#usage-undo"
-                onClick={handleSmoothScroll}
-                className="font-mono text-base text-neutral-400 transition-colors duration-200 hover:text-white cursor-pointer"
-              >
-                git pilot undo
-              </a>
-            </li>
-          </ul>
-        </div>
+    <aside className="sticky top-28 h-[calc(100vh-8rem)] overflow-y-auto py-2">
+      <nav aria-label="Documentation" className="space-y-9">
+        {groups.map((group) => (
+          <div key={group.title}>
+            <h3 className="mb-3 text-[13px] font-semibold text-ink/45">{group.title}</h3>
+            <ul className="space-y-0.5">
+              {group.items.map(({ id, label, dot }) => {
+                const isActive = active === id;
+                return (
+                  <li key={id}>
+                    <a
+                      href={`#${id}`}
+                      aria-current={isActive ? "location" : undefined}
+                      className={`focus-ring -ml-3 flex items-center gap-2.5 rounded-lg px-3 py-1.5 text-[15px] transition-colors duration-150 ease-out-strong ${
+                        isActive ? "bg-ink/[0.06] text-ink" : "text-ink/55 hover:text-ink"
+                      } ${dot ? "font-mono text-[14px]" : ""}`}
+                    >
+                      {dot && <span aria-hidden className={`size-2 rounded-full ${dot}`} />}
+                      {label}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ))}
       </nav>
     </aside>
   );
