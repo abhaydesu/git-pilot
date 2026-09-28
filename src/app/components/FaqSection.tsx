@@ -23,7 +23,7 @@ const faqs: FAQ[] = [
   {
     question: "How do I install it?",
     answer:
-      "You'll need Node.js (v18+) and Git installed. Then, simply run `npm install -g @abhaydesu/git-pilot` in your terminal to install it globally.",
+      "You'll need Node.js (v20+) and Git installed. Then, simply run `npm install -g @abhaydesu/git-pilot` in your terminal to install it globally.",
   },
   {
     question: "Is it free to use?",

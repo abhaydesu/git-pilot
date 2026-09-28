@@ -43,7 +43,7 @@ export default function DocsPage() {
           Installation
         </h2>
         <p className={prose}>
-          Make sure you have Node.js (v18+) and Git installed. Then, run the
+          Make sure you have Node.js (v20+) and Git installed. Then, run the
           following command to install Git-Pilot globally from npm:
         </p>
         <DocsCodeBlock copyable>
