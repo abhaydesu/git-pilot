@@ -12,7 +12,7 @@ export const DocsCodeBlock = ({
 }: DocsCodeBlockProps) => (
   <div className="relative my-5">
     <pre
-      className={`overflow-x-auto rounded-xl bg-paper p-5 shadow-[0_0_0_1px_rgba(23,32,46,0.07)] ${copyable ? "pr-14" : ""}`}
+      className={`overflow-x-auto rounded-xl bg-paper p-5 ring-soft ${copyable ? "pr-14" : ""}`}
     >
       <code className="font-mono text-[13px] leading-relaxed text-ink sm:text-sm">
         {children}

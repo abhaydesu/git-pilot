@@ -55,7 +55,7 @@ const tiles = [
     title: "Plain English in, git out.",
     body: "Describe it. Get the exact command, shown before it runs.",
     art: run,
-    className: "bg-run text-paper",
+    className: "bg-run text-snow",
   },
   {
     n: "03",

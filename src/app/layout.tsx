@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { DM_Sans, IBM_Plex_Mono, Newsreader } from "next/font/google";
+import { themeInitScript } from "@/lib/theme";
 import "./globals.css";
 
 // DM Sans and Newsreader both have an optical-size axis: large headlines get
@@ -25,6 +26,11 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  // Tints the mobile browser chrome. Follows the OS setting; the manual toggle can't change it.
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f3f2ea" },
+    { media: "(prefers-color-scheme: dark)", color: "#0e131b" },
+  ],
 };
 
 export default function RootLayout({
@@ -39,6 +45,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         {/* Array: the original Git Pilot wordmark face */}
         <link rel="preconnect" href="https://api.fontshare.com" />
         <link

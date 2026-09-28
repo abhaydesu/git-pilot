@@ -19,7 +19,7 @@ const links = [
 /** Closing statement and footer share one ink panel, with the ASCII field behind. */
 export const Footer = ({ cta = true }: { cta?: boolean }) => (
   <footer className="p-3">
-    <div className="relative isolate overflow-hidden rounded-[28px] bg-ink text-paper">
+    <div className="relative isolate overflow-hidden rounded-[28px] bg-night text-snow">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10 opacity-[0.16] [mask-image:radial-gradient(80%_70%_at_50%_30%,black,transparent)]"
@@ -34,7 +34,7 @@ export const Footer = ({ cta = true }: { cta?: boolean }) => (
             <br />
             with a sentence.
           </h2>
-          <p className="mx-auto mt-5 max-w-md text-[17px] text-paper/60">
+          <p className="mx-auto mt-5 max-w-md text-[17px] text-snow/60">
             Free, open on npm, and ready in one line.
           </p>
           <div className="mt-10 flex justify-center">
@@ -43,24 +43,24 @@ export const Footer = ({ cta = true }: { cta?: boolean }) => (
         </div>
       )}
 
-      <div className="mx-5 flex flex-col items-center justify-between gap-6 border-t border-paper/10 py-8 md:mx-10 md:flex-row">
+      <div className="mx-5 flex flex-col items-center justify-between gap-6 border-t border-snow/10 py-8 md:mx-10 md:flex-row">
         <div className="flex flex-col items-center gap-3 md:flex-row md:gap-8">
           <Link href="/" aria-label="Git Pilot home" className="press focus-ring rounded">
             <Logo tone="paper" className="text-[19px]" />
           </Link>
-          <nav aria-label="Footer" className="flex gap-5 text-[14px] text-paper/60">
+          <nav aria-label="Footer" className="flex gap-5 text-[14px] text-snow/60">
             {links.map((l) => (
-              <a key={l.label} href={l.href} className="press focus-ring rounded hover:text-paper">
+              <a key={l.label} href={l.href} className="press focus-ring rounded hover:text-snow">
                 {l.label}
               </a>
             ))}
           </nav>
         </div>
         <div className="flex items-center gap-4">
-          <p className="text-[14px] text-paper/50">
+          <p className="text-[14px] text-snow/50">
             made with &lt;3 by{" "}
             <a
-              className="press focus-ring rounded text-paper/80 hover:text-paper"
+              className="press focus-ring rounded text-snow/80 hover:text-snow"
               target="_blank"
               rel="noopener noreferrer"
               href="https://abhaydesu.dev"
@@ -72,7 +72,7 @@ export const Footer = ({ cta = true }: { cta?: boolean }) => (
             {socials.map(({ label, href, Icon }) => (
               <li key={label}>
                 <a
-                  className="press focus-ring grid size-9 place-items-center rounded-full text-paper/50 hover:bg-paper/10 hover:text-paper"
+                  className="press focus-ring grid size-9 place-items-center rounded-full text-snow/50 hover:bg-snow/10 hover:text-snow"
                   target="_blank"
                   rel="noopener noreferrer"
                   href={href}

@@ -72,10 +72,10 @@ const scenarios: Scenario[] = [
 const EASE_OUT = [0.23, 1, 0.32, 1] as const;
 
 const toneClass: Record<Tone, string> = {
-  dim: "text-paper/40",
-  plain: "text-paper/75",
-  ok: "text-paper/55",
-  strong: "text-paper",
+  dim: "text-snow/40",
+  plain: "text-snow/75",
+  ok: "text-snow/55",
+  strong: "text-snow",
   select: "",
 };
 
@@ -127,7 +127,7 @@ export const TerminalDemo = () => {
       <div
         role="tablist"
         aria-label="Git Pilot commands"
-        className="mx-auto mb-5 flex w-fit gap-1 rounded-full bg-paper p-1 font-mono text-xs shadow-[0_1px_0_rgba(22,20,15,0.04),0_0_0_1px_rgba(22,20,15,0.06)]"
+        className="mx-auto mb-5 flex w-fit gap-1 rounded-full bg-paper p-1 font-mono text-xs ring-soft"
       >
         {scenarios.map((s, i) => {
           const active = i === idx;
@@ -157,12 +157,12 @@ export const TerminalDemo = () => {
         })}
       </div>
 
-      <div className="overflow-hidden rounded-2xl bg-ink shadow-[0_50px_100px_-50px_rgba(23,32,46,0.6),0_20px_40px_-30px_rgba(23,32,46,0.4)]">
-        <div className="flex items-center gap-2 border-b border-paper/10 px-4 py-3">
-          <span className="size-2.5 rounded-full bg-paper/15" />
-          <span className="size-2.5 rounded-full bg-paper/15" />
-          <span className="size-2.5 rounded-full bg-paper/15" />
-          <span className="ml-3 font-mono text-xs text-paper/35">
+      <div className="overflow-hidden rounded-2xl bg-night dark:ring-1 dark:ring-snow/10 shadow-[0_50px_100px_-50px_rgba(23,32,46,0.6),0_20px_40px_-30px_rgba(23,32,46,0.4)]">
+        <div className="flex items-center gap-2 border-b border-snow/10 px-4 py-3">
+          <span className="size-2.5 rounded-full bg-snow/15" />
+          <span className="size-2.5 rounded-full bg-snow/15" />
+          <span className="size-2.5 rounded-full bg-snow/15" />
+          <span className="ml-3 font-mono text-xs text-snow/35">
             ~/my-project
           </span>
         </div>
@@ -172,7 +172,7 @@ export const TerminalDemo = () => {
           aria-live="off"
           className="h-[19rem] overflow-hidden px-5 py-5 font-mono text-[13px] leading-6 sm:h-[17rem] sm:text-sm"
         >
-          <p className="break-words text-paper">
+          <p className="break-words text-snow">
             <span className="mr-2 text-accent">$</span>
             {scenario.command.slice(0, typed)}
             {(typing || shown === 0) && (

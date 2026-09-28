@@ -5,7 +5,7 @@ type Line = { text: string; tone?: "dim" | "strong" | "prompt" | "pick" };
 
 /** A light product shot: the terminal as it reads in a real session. */
 const Shot = ({ lines }: { lines: Line[] }) => (
-  <div className="rounded-3xl bg-paper p-3 shadow-[0_0_0_1px_rgba(23,32,46,0.06)]">
+  <div className="rounded-3xl bg-paper p-3 ring-soft">
     <div className="rounded-2xl bg-cream/70 px-5 py-6 font-mono text-[13px] leading-[1.9] sm:px-7 sm:text-[13.5px]">
       {lines.map((l, i) => (
         <p

@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Logo from "./ui/Logo";
+import ThemeToggle from "./ui/ThemeToggle";
 
 const links = [
   { label: "Docs", href: "/docs", external: false },
@@ -76,26 +77,30 @@ export const Navbar = () => {
               <NavLink key={l.label} l={l} className={linkClass} />
             ))}
           </nav>
+          <ThemeToggle className="ml-1" />
           <Link
             href="/docs"
-            className="press focus-ring ml-3 rounded-full bg-ink px-4 py-2 text-[15px] text-paper hover:bg-ink/85"
+            className="press focus-ring ml-2 rounded-full bg-ink px-4 py-2 text-[15px] text-paper hover:bg-ink/85"
           >
             Get started
           </Link>
         </div>
 
-        <button
-          type="button"
-          onClick={() => setOpen((o) => !o)}
-          aria-label="Toggle menu"
-          aria-expanded={open}
-          className="press focus-ring -mr-2 grid size-10 place-items-center rounded-full md:hidden"
-        >
-          <span className="space-y-1.5">
-            <span className={`${bar} ${open ? "translate-y-[4px] rotate-45" : ""}`} />
-            <span className={`${bar} ${open ? "-translate-y-[4px] -rotate-45" : ""}`} />
-          </span>
-        </button>
+        <div className="-mr-2 flex items-center md:hidden">
+          <ThemeToggle />
+          <button
+            type="button"
+            onClick={() => setOpen((o) => !o)}
+            aria-label="Toggle menu"
+            aria-expanded={open}
+            className="press focus-ring grid size-10 place-items-center rounded-full"
+          >
+            <span className="space-y-1.5">
+              <span className={`${bar} ${open ? "translate-y-[4px] rotate-45" : ""}`} />
+              <span className={`${bar} ${open ? "-translate-y-[4px] -rotate-45" : ""}`} />
+            </span>
+          </button>
+        </div>
       </div>
 
       <nav

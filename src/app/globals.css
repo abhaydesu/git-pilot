@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Dark mode is driven by <html data-theme="dark">, set before first paint (see layout.tsx). */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 @theme {
   /* Ground: cream page, paper cards, navy ink. No pure black, no pure white. */
   --color-cream: #f3f2ea;
@@ -8,6 +11,15 @@
   /* Brand accent: git's signal orange. `accent-ink` is the AA-safe shade for text. */
   --color-accent: #ff5b2e;
   --color-accent-ink: #b93d10;
+
+  /*
+   * Constant across themes, for surfaces that stay dark and the text on them
+   * (footer, terminal) or that need fixed contrast (light pill, coloured tiles).
+   * `ink`/`paper`/`cream` flip with the theme; these do not.
+   */
+  --color-night: #17202e;
+  --color-snow: #fbfaf5;
+  --color-accent-deep: #b93d10;
 
   /* One colour per command, used for tiles (fill) and labels/checks (ink). */
   --color-commit: #ff7a4d;
@@ -36,6 +48,24 @@
 
 :root {
   color-scheme: light;
+}
+
+/*
+ * Dark palette. Same roles as light: cream = page, paper = raised card, ink = text.
+ * `-ink` accents are lightened because their light-mode shades are tuned for cream
+ * and would be too dim on a dark page. The fill colours (commit, run, ...) stay put.
+ */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-cream: #0e131b;
+  --color-paper: #161d29;
+  --color-ink: #ecebe3;
+  --color-night: #1b2434;
+  --color-accent-ink: #ff8a63;
+  --color-commit-ink: #ff8a63;
+  --color-run-ink: #8fa2ff;
+  --color-branch-ink: #a3d485;
+  --color-undo-ink: #e8cc55;
 }
 
 html {
@@ -98,6 +128,11 @@ p {
 }
 .press:active {
   transform: scale(0.97);
+}
+
+/* Hairline around cards; derived from ink so it works in both themes. */
+.ring-soft {
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-ink) 7%, transparent);
 }
 
 .focus-ring {
