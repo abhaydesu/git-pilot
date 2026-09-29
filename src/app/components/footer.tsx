@@ -58,31 +58,16 @@ export const Footer = ({ cta = true }: { cta?: boolean }) => (
         </div>
         <div className="flex items-center gap-4">
           <p className="text-[14px] text-snow/50">
-            made with &lt;3 by{" "}
+            made by{" "}
             <a
               className="press focus-ring rounded text-snow/80 hover:text-snow"
               target="_blank"
               rel="noopener noreferrer"
-              href="https://abhaydesu.dev"
+              href="https://abhaydesu.me"
             >
-              Abhay
+              @abhaydesu
             </a>
           </p>
-          <ul className="flex items-center">
-            {socials.map(({ label, href, Icon }) => (
-              <li key={label}>
-                <a
-                  className="press focus-ring grid size-9 place-items-center rounded-full text-snow/50 hover:bg-snow/10 hover:text-snow"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href={href}
-                  aria-label={label}
-                >
-                  <Icon aria-hidden size={17} />
-                </a>
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
     </div>
