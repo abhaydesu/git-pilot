@@ -11,7 +11,7 @@ const scenarios: Scenario[] = [
   {
     id: "commit",
     tab: "commit",
-    command: 'git pilot commit "add user authentication"',
+    command: "git pilot add user authentication",
     output: [
       { text: "✔ Reading staged changes", tone: "ok" },
       { text: "✔ Drafting a conventional commit", tone: "ok" },
@@ -49,7 +49,10 @@ const scenarios: Scenario[] = [
       { text: "-----------------------------", tone: "dim" },
       { text: "" },
       { text: " Accept ", tone: "select" },
-      { text: '✔ Switched to new branch "feature/add-oauth-login"', tone: "ok" },
+      {
+        text: '✔ Switched to new branch "feature/add-oauth-login"',
+        tone: "ok",
+      },
     ],
   },
   {
@@ -114,7 +117,10 @@ export const TerminalDemo = () => {
     t += outLen * LINE_MS;
     if (auto) {
       timers.push(
-        setTimeout(() => setIdx((i) => (i + 1) % scenarios.length), t + HOLD_MS),
+        setTimeout(
+          () => setIdx((i) => (i + 1) % scenarios.length),
+          t + HOLD_MS,
+        ),
       );
     }
     return () => timers.forEach(clearTimeout);

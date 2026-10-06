@@ -18,17 +18,22 @@ const faqs: FAQ[] = [
   {
     question: "Does Git Pilot require internet access?",
     answer:
-      "Yes. Git Pilot securely sends your request (like a code diff or a prompt) to a dedicated API that uses Google's Gemini models. Your code is never stored, and the API is only used to generate the suggestion.",
+      "Yes. Git Pilot connects directly over TLS from your machine to Google's official Gemini API using your personal API key. Your key is stored in your operating system credential manager (macOS Keychain, Windows Credential Manager, Linux Secret Service), and Git Pilot never sends your credentials or diffs to any intermediary server.",
   },
   {
     question: "How do I install it?",
     answer:
-      "You'll need Node.js (v20+) and Git installed. Then, simply run `npm install -g @abhaydesu/git-pilot` in your terminal to install it globally.",
+      "You'll need Node.js (v20+) and Git installed. Run `npm install -g @abhaydesu/git-pilot`, stage a change, and run `git pilot`. On first use, Git Pilot shows its data-sharing notice and guides you through adding a Gemini API key. You can also start setup with `git pilot setup`.",
   },
   {
     question: "Is it free to use?",
     answer:
-      "Yes, the tool is completely free for all users. It's published on npm, and the backend API is publicly available for everyone to use.",
+      "Git Pilot is free and open-source. You supply your own Google Gemini API key. API quotas, availability, and any charges depend on your Google AI plan; check Google's current Gemini API pricing before use.",
+  },
+  {
+    question: "Setup says the Gemini model is unavailable. What should I do?",
+    answer:
+      "The key may be valid while its Google project lacks access to the configured model. Git Pilot defaults to `gemini-3.5-flash-lite` and checks model access before saving your key. Check the model catalog and access in Google AI Studio, then set an available model in your Git Pilot config and run `git pilot setup` again. The previous built-in Gemini 2.5 default is migrated automatically.",
   },
   {
     question: "What if I don't like the AI's suggestion?",
@@ -39,7 +44,7 @@ const faqs: FAQ[] = [
     question: "What if I make a mistake?",
     answer:
       "We built a magic `git pilot undo` command for that. It analyzes your recent Git history and suggests the safest command to reverse your last major action, like a bad commit or merge.",
-  }
+  },
 ];
 
 const EASE_OUT = [0.23, 1, 0.32, 1] as const;
@@ -49,7 +54,11 @@ export const FaqSection: React.FC = () => {
 
   return (
     <MotionConfig reducedMotion="user">
-      <section id="faq" aria-labelledby="faq-heading" className="px-5 pb-32 md:pb-44">
+      <section
+        id="faq"
+        aria-labelledby="faq-heading"
+        className="px-5 pb-32 md:pb-44"
+      >
         <div className="mx-auto grid max-w-[1120px] gap-10 border-t border-ink/10 pt-24 md:grid-cols-[1fr_1.35fr] md:pt-32">
           <Reveal>
             <h2
@@ -66,7 +75,10 @@ export const FaqSection: React.FC = () => {
             {faqs.map((faq, index) => {
               const isOpen = openIndex === index;
               return (
-                <div key={faq.question} className="border-b border-ink/10 first:border-t md:first:border-t-0">
+                <div
+                  key={faq.question}
+                  className="border-b border-ink/10 first:border-t md:first:border-t-0"
+                >
                   <h3>
                     <button
                       type="button"
